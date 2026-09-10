@@ -14,17 +14,34 @@
 <meta name="twitter:description" content="Convert a Pressbooks XHTML export to Markdown pages for Grav Helios Open Reader — or standard, portable Markdown for any platform.">
 <title>Pressbooks → Grav Helios Open Reader</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><style>path{stroke:%232c2a27}@media (prefers-color-scheme:dark){path{stroke:%23e8e6e3}}</style><path d='M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4'/><path d='M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config = { darkMode: 'media', theme: { extend: { fontFamily: { sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'] } } } }</script>
+<!-- Re-skinned to sit alongside hibbittsdesign.org: self-hosted Public Sans + JetBrains Mono,
+     warm paper/ink neutrals, and the site's Grav Helios-family purple as the single accent. The
+     Tailwind color names below (stone / blue / slate) are remapped so the existing utility
+     classes pick up the new palette without a full markup rewrite. -->
+<script>tailwind.config = {
+  darkMode: 'media',
+  theme: { extend: {
+    fontFamily: {
+      sans: ['"Public Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+      mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+    },
+    colors: {
+      stone: { 50:'#f7f7f5', 100:'#fcfcfb', 200:'#e6e5e1', 300:'#cbcac4', 400:'#8a8c87', 500:'#5c5e5a', 600:'#4a4c48', 700:'#2e3033', 800:'#1e2023', 900:'#191a1c', 950:'#111214' },
+      amber: { 50:'#f6f3fa', 100:'#ede9f4', 200:'#ddd4ea', 300:'#c6b6dd', 400:'#b09bd4', 500:'#8a72b0', 600:'#6a5691', 700:'#6a5691', 800:'#6a5691', 900:'#5a4a7d', 950:'#1d1830' },
+      blue:  { 50:'#f6f3fa', 100:'#ede9f4', 200:'#ddd4ea', 300:'#c6b6dd', 400:'#b09bd4', 500:'#8a72b0', 600:'#6a5691', 700:'#6a5691', 800:'#6a5691', 900:'#5a4a7d', 950:'#1d1830' },
+      slate: { 50:'#f6f3fa', 100:'#ede9f4', 200:'#ddd4ea', 300:'#c6b6dd', 400:'#b09bd4', 500:'#8a72b0', 600:'#6a5691', 700:'#6a5691', 800:'#6a5691', 900:'#5a4a7d', 950:'#1d1830' },
+    },
+  } },
+}</script>
 <script src="marked.min.js"></script>
 <style>
+  @font-face{font-family:"Public Sans";src:url("assets/fonts/PublicSans-Variable.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap;}
+  @font-face{font-family:"JetBrains Mono";src:url("assets/fonts/JetBrainsMono-Variable.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap;}
   /* JS-toggled drag state */
-  .drop-zone.dragover { border-color: #55738f; background: #eef2f5; }
+  .drop-zone.dragover { border-color: #6a5691; background: #ede9f4; }
   @media (prefers-color-scheme: dark) {
-    .drop-zone.dragover { border-color: #5b83a3; background: #202f3d; }
+    .drop-zone.dragover { border-color: #b09bd4; background: #2a2340; }
   }
   /* JS-toggled file-selected visibility */
   .file-selected.visible { display: flex; }
@@ -111,30 +128,29 @@
   .tech-summary-body li { margin-bottom: 0.25rem; }
   .tech-summary-body code { font-size: 12px; background: #fafaf9; border: 1px solid #d6d3d1; border-radius: 3px; padding: 1px 4px; }
   @media (prefers-color-scheme: dark) {
-    .tech-summary-body code { background: #211f1e; border-color: #57534e; }
+    .tech-summary-body code { background: #1e2023; border-color: #57534e; }
   }
   /* Global focus ring */
-  :focus-visible { outline: 2px solid #46698a; outline-offset: 2px; border-radius: 4px; }
-  @media (prefers-color-scheme: dark) { :focus-visible { outline-color: #6f92ac; } }
-  input[type="checkbox"] { accent-color: #1e40af; }
-  @media (prefers-color-scheme: dark) { input[type="checkbox"] { accent-color: #2563eb; } }
+  :focus-visible { outline: 2px solid #3d6f9e; outline-offset: 2px; border-radius: 4px; }
+  @media (prefers-color-scheme: dark) { :focus-visible { outline-color: #7fabd6; } }
+  input[type="checkbox"] { accent-color: #6a5691; }
+  @media (prefers-color-scheme: dark) { input[type="checkbox"] { accent-color: #b09bd4; } }
 </style>
 </head>
 <body class="font-sans bg-stone-100 dark:bg-stone-900 text-stone-900 dark:text-stone-200 min-h-screen flex flex-col items-center">
 
-<header class="sticky top-0 z-20 w-full flex justify-center bg-stone-100/75 dark:bg-stone-900/75 backdrop-blur border-b-2 border-[#3b5a75] dark:border-[#4a6f8c]">
+<header class="sticky top-0 z-20 w-full flex justify-center bg-stone-100/75 dark:bg-stone-900/75 backdrop-blur border-b border-stone-200 dark:border-stone-700">
   <div class="w-full max-w-[896px] px-4 pt-4 pb-4">
     <div class="max-w-[68ch] mx-auto">
-      <nav class="mb-3" aria-label="Back to all converters">
-        <a href="https://grav-helios-converters.hibbittsdesign.org/" class="inline-flex items-center gap-1 text-[13px] text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L6 8l4 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          All Helios converters
-        </a>
+      <nav class="mb-3 flex items-center gap-2 text-[13px]" aria-label="Breadcrumb">
+        <a href="https://hibbittsdesign.org/" class="font-mono font-semibold text-stone-600 dark:text-stone-300 hover:text-[#3d6f9e] dark:hover:text-[#7fabd6]">HibbittsDesign.org</a>
+        <span aria-hidden="true" class="text-stone-400 dark:text-stone-600">/</span>
+        <a href="https://grav-helios-converters.hibbittsdesign.org/" class="text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300">Helios Converters</a>
       </nav>
       <div class="flex items-center gap-3.5">
-        <div class="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0 bg-[#cee9fb] dark:bg-[#142f49] text-[#2c4457] dark:text-[#9fbad0]" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5c2-1 5-1 8 0v13c-3-1-6-1-8 0z"/><path d="M20 5.5c-2-1-5-1-8 0v13c3-1 6-1 8 0z"/></svg></div>
+        <div class="w-11 h-11 rounded-[10px] flex items-center justify-center shrink-0 bg-[#ede9f4] dark:bg-[#2a2340] text-[#6a5691] dark:text-[#b09bd4]" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5c2-1 5-1 8 0v13c-3-1-6-1-8 0z"/><path d="M20 5.5c-2-1-5-1-8 0v13c3-1 6-1 8 0z"/></svg></div>
         <div>
-          <h1 class="text-2xl font-bold tracking-tight">Pressbooks → Grav Helios Open Reader <span class="inline-block text-[11px] leading-[1.3] font-semibold px-[7px] py-[3px] rounded-full bg-[#cee9fb] dark:bg-[#142f49] text-[#2c4457] dark:text-[#9fbad0] align-middle ml-1 tracking-[0.02em]">v0.9.0 Beta</span></h1>
+          <h1 class="text-2xl font-bold tracking-tight">Pressbooks → Grav Helios Open Reader <span class="inline-block text-[11px] leading-[1.3] font-semibold px-[7px] py-[3px] rounded-full bg-[#ede9f4] dark:bg-[#2a2340] text-[#6a5691] dark:text-[#b09bd4] align-middle ml-1 tracking-[0.02em]">v0.9.0 Beta</span></h1>
           <div class="text-[13px] text-stone-500 dark:text-stone-400 mt-0.5">Convert a Pressbooks XHTML export to Markdown pages for Grav Helios Open Reader</div>
         </div>
       </div>
@@ -146,20 +162,20 @@
 
   <div class="max-w-[68ch] mx-auto">
 
-  <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed"><a href="https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1" class="text-blue-800 dark:text-blue-400 underline underline-offset-2">Grav Helios Open Reader</a> <strong>gives your book or guide a better reading experience, built for the web</strong> – and gives you direct access to the content behind it: portable, future-friendly Markdown files ready for the 5Rs (retain, reuse, revise, remix, redistribute), no database, no WordPress or Pressbooks hosting to maintain. Because Pressbooks exports follow a single, consistent format, conversions are typically a fairly close, faithful match to your original book. Prefer output with no Helios dependency at all? Turn on <strong>Standard Markdown</strong> below for plain Markdown that also works on other Markdown-based platforms.</p>
+  <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed"><a href="https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1" class="text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">Grav Helios Open Reader</a> <strong>gives your book or guide a better reading experience, built for the web</strong> – and gives you direct access to the content behind it: portable, future-friendly Markdown files ready for the 5Rs (retain, reuse, revise, remix, redistribute), no database, no WordPress or Pressbooks hosting to maintain. Because Pressbooks exports follow a single, consistent format, conversions are typically a fairly close, faithful match to your original book. Prefer output with no Helios dependency at all? Turn on <strong>Standard Markdown</strong> below for plain Markdown that also works on other Markdown-based platforms.</p>
 
   <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed">For readers, that means a clean, distraction-free layout with light and dark mode, structured sections and chapters, and purpose-built callout blocks for objectives, definitions, and key takeaways – a more modern experience than a PDF or a scanned book, designed to be enjoyable.</p>
 
   <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed">Readers keep their place: <strong>Keep My Place</strong> remembers the last section they read in that browser and offers a one-click way back in next time, something few other reading tools offer.</p>
 
   <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed">Any single page can be embedded into Canvas, Moodle, or Brightspace with a simple URL parameter, keeping readers inside the LMS instead of a separate website. For example:
-    <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/section-2/11-defining-social-psychology-history-and-principl?embedded=true" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-medium text-blue-800 dark:text-blue-400 underline underline-offset-2">
+    <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/section-2/11-defining-social-psychology-history-and-principl?embedded=true" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-medium text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">
       this section
       <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 3H13v3.5M13 3L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>, displayed with no header or sidebar. Optional Git Sync enables open collaborative authoring, with your content always directly accessible whenever you need it.</p>
 
   <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed">Convert your own Pressbooks publication and browse the resulting Markdown files directly – no Grav or Helios installation needed to see what carries over. Or start with a real example:
-    <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-medium text-blue-800 dark:text-blue-400 underline underline-offset-2">
+    <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-medium text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">
       Principles of Social Psychology
       <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 3H13v3.5M13 3L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -168,25 +184,25 @@
   <nav aria-label="How it works">
     <ol class="flex flex-col gap-2.5 mb-6 list-none p-0">
       <li class="flex items-start gap-3 text-[15px] text-stone-500 dark:text-stone-400">
-        <div class="shrink-0 w-[22px] h-[22px] bg-[#dde6ec] dark:bg-[#202f3d] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">1</div>
+        <div class="shrink-0 w-[22px] h-[22px] bg-[#ede9f4] dark:bg-[#2a2340] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">1</div>
         <span>From your Pressbooks dashboard, click <strong>Export</strong> in the left sidebar. In the <strong>Export Options</strong> panel, check <strong>XHTML</strong> and click <strong>Export Book</strong>. Alternatively, use the <strong>Download this book</strong> dropdown on the book cover page. Download the <code>.html</code> file.</span>
       </li>
       <li class="flex items-start gap-3 text-[15px] text-stone-500 dark:text-stone-400">
-        <div class="shrink-0 w-[22px] h-[22px] bg-[#dde6ec] dark:bg-[#202f3d] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">2</div>
+        <div class="shrink-0 w-[22px] h-[22px] bg-[#ede9f4] dark:bg-[#2a2340] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">2</div>
         <span>Upload that file below and click <strong>Convert &amp; Download ZIP</strong>. A <code>pages/</code> folder structure ready for Grav will be downloaded.</span>
       </li>
       <li class="flex items-start gap-3 text-[15px] text-stone-500 dark:text-stone-400">
-        <div class="shrink-0 w-[22px] h-[22px] bg-[#dde6ec] dark:bg-[#202f3d] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">3</div>
-        <span>Extract the ZIP and copy the book folder from inside the extracted <code>pages</code> folder into your <a href="https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1" class="text-blue-800 dark:text-blue-400 underline underline-offset-2">Grav Helios Open Reader</a> installation's <code>user/pages/</code> directory. Don't have a Grav Helios Open Reader yet? <a href="https://getgrav.org/download/skeletons/helios-open-reader/latest" class="text-blue-800 dark:text-blue-400 underline underline-offset-2">Download the skeleton package</a>.</span>
+        <div class="shrink-0 w-[22px] h-[22px] bg-[#ede9f4] dark:bg-[#2a2340] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">3</div>
+        <span>Extract the ZIP and copy the book folder from inside the extracted <code>pages</code> folder into your <a href="https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1" class="text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">Grav Helios Open Reader</a> installation's <code>user/pages/</code> directory. Don't have a Grav Helios Open Reader yet? <a href="https://getgrav.org/download/skeletons/helios-open-reader/latest" class="text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">Download the skeleton package</a>.</span>
       </li>
       <li class="flex items-start gap-3 text-[15px] text-stone-500 dark:text-stone-400">
-        <div class="shrink-0 w-[22px] h-[22px] bg-[#dde6ec] dark:bg-[#202f3d] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">4</div>
+        <div class="shrink-0 w-[22px] h-[22px] bg-[#ede9f4] dark:bg-[#2a2340] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">4</div>
         <span>Review the included <code>conversion-notes.txt</code> for a summary of what was converted, what was not included, and any warnings to address.</span>
       </li>
     </ol>
   </nav>
 
-  <p class="text-[15px] text-stone-500 dark:text-stone-400 -mt-2 mb-5">New to Grav Helios Open Reader? The <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader/readme" class="text-blue-700 dark:text-blue-400 underline underline-offset-2">ReadMe</a> covers installation, configuration, and getting started.</p>
+  <p class="text-[15px] text-stone-500 dark:text-stone-400 -mt-2 mb-5">New to Grav Helios Open Reader? The <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader/readme" class="text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">ReadMe</a> covers installation, configuration, and getting started.</p>
 
   </div>
 
@@ -200,14 +216,14 @@
 
     <form method="POST" action="convert.php" enctype="multipart/form-data" id="convert-form">
 
-      <div class="drop-zone border-2 border-dashed border-stone-300 dark:border-stone-600 rounded-lg py-5 px-8 text-center cursor-pointer bg-stone-50 dark:bg-[#211f1e] transition-colors duration-150 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-[#202f3d]" id="drop-zone" role="button" tabindex="0" aria-label="Upload file – click or press Enter to browse">
+      <div class="drop-zone border-2 border-dashed border-stone-300 dark:border-stone-600 rounded-lg py-5 px-8 text-center cursor-pointer bg-stone-50 dark:bg-[#1e2023] transition-colors duration-150 hover:border-slate-400 dark:hover:border-slate-500 hover:bg-slate-50 dark:hover:bg-[#2a2340]" id="drop-zone" role="button" tabindex="0" aria-label="Upload file – click or press Enter to browse">
         <div class="text-[2rem] mb-2" aria-hidden="true">⬆</div>
         <p class="text-[15px] font-medium mb-1">Drop your .html or .xhtml file here</p>
         <p class="text-[13px] text-stone-500 dark:text-stone-400">or click to browse – max 50 MB</p>
         <input type="file" name="xhtml" id="file-input" accept=".html,.xhtml" class="hidden">
       </div>
 
-      <div class="file-selected hidden items-center gap-2.5 bg-slate-50 dark:bg-[#202f3d] border border-slate-200 dark:border-slate-700 rounded-lg px-[14px] py-[10px] mb-3" id="file-selected" aria-live="polite">
+      <div class="file-selected hidden items-center gap-2.5 bg-slate-50 dark:bg-[#2a2340] border border-slate-200 dark:border-slate-700 rounded-lg px-[14px] py-[10px] mb-3" id="file-selected" aria-live="polite">
         <span aria-hidden="true">📄</span>
         <span class="text-sm font-medium text-slate-700 dark:text-slate-400 flex-1 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap" id="file-name"></span>
         <span class="text-[13px] text-stone-500 dark:text-stone-400 whitespace-nowrap" id="file-size"></span>
@@ -238,9 +254,9 @@
           Embed H5P activities
         </label>
         <span class="text-xs text-stone-500 dark:text-stone-400 pl-[21px]">Replace H5P placeholder links with embedded shortcodes. A fallback link and <code>h5p-embeds.txt</code> are included in the ZIP so you can verify each embed URL before installing. Requires the book to remain publicly accessible at its original Pressbooks URL.</span>
-        <div class="mt-3 border border-blue-200 dark:border-blue-900 rounded-md px-3 pt-2 pb-3 bg-blue-50/50 dark:bg-[#142f49]/20">
+        <div class="mt-3 border border-blue-200 dark:border-blue-900 rounded-md px-3 pt-2 pb-3 bg-blue-50/50 dark:bg-[#2a2340]/20">
           <p class="text-xs font-medium text-stone-500 dark:text-stone-400 mb-2">Output Format
-            <span class="inline-block text-[10px] leading-[1.3] font-semibold px-[6px] py-[2px] rounded-full bg-[#cee9fb] dark:bg-[#142f49] text-[#2c4457] dark:text-[#9fbad0] align-middle ml-1 tracking-[0.02em]">NEW</span>
+            <span class="inline-block text-[10px] leading-[1.3] font-semibold px-[6px] py-[2px] rounded-full bg-[#ede9f4] dark:bg-[#2a2340] text-[#6a5691] dark:text-[#b09bd4] align-middle ml-1 tracking-[0.02em]">NEW</span>
           </p>
           <label class="flex items-center gap-[7px] text-[15px] cursor-pointer">
             <input type="checkbox" name="portable_markdown" value="1">
