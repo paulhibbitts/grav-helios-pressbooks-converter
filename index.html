@@ -14,6 +14,7 @@
 <meta name="twitter:description" content="Convert a Pressbooks XHTML export to Markdown pages for Grav Helios Open Reader — or standard, portable Markdown for any platform.">
 <title>Pressbooks → Grav Helios Open Reader</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><style>path{stroke:%232c2a27}@media (prefers-color-scheme:dark){path{stroke:%23e8e6e3}}</style><path d='M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4'/><path d='M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4'/></svg>">
+<link rel="stylesheet" href="assets/shared.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- Re-skinned to sit alongside hibbittsdesign.org: self-hosted Public Sans + JetBrains Mono,
      warm paper/ink neutrals, and the site's Grav Helios-family purple as the single accent. The
@@ -36,8 +37,12 @@
 }</script>
 <script src="marked.min.js"></script>
 <style>
-  @font-face{font-family:"Public Sans";src:url("assets/fonts/PublicSans-Variable.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap;}
-  @font-face{font-family:"JetBrains Mono";src:url("assets/fonts/JetBrainsMono-Variable.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap;}
+  /* Fonts, .tlink, and the focus ring come from shared.css (this page still
+     keeps its own Tailwind color ramps for chrome). --ink here
+     matches this page's own stone-900/stone-200 (the darkest/lightest of
+     its Tailwind stone ramp) so shared.css's .wordmark can reference it. */
+  :root{ --ink:#191a1c; }
+  @media (prefers-color-scheme: dark){ :root{ --ink:#e6e5e1; } }
   /* JS-toggled drag state */
   .drop-zone.dragover { border-color: #6a5691; background: #ede9f4; }
   @media (prefers-color-scheme: dark) {
@@ -131,8 +136,7 @@
     .tech-summary-body code { background: #1e2023; border-color: #57534e; }
   }
   /* Global focus ring */
-  :focus-visible { outline: 2px solid #3d6f9e; outline-offset: 2px; border-radius: 4px; }
-  @media (prefers-color-scheme: dark) { :focus-visible { outline-color: #7fabd6; } }
+  /* focus-visible ring comes from shared.css */
   input[type="checkbox"] { accent-color: #6a5691; }
   @media (prefers-color-scheme: dark) { input[type="checkbox"] { accent-color: #b09bd4; } }
 </style>
@@ -143,7 +147,7 @@
   <div class="w-full max-w-[896px] px-4 pt-[22px] pb-4">
     <div class="max-w-[68ch] mx-auto">
       <nav class="mb-3 flex items-center flex-wrap gap-2" aria-label="Breadcrumb">
-        <a href="https://hibbittsdesign.org/" class="inline-flex items-center gap-[9px] font-mono text-[16.5px] font-bold tracking-[0.02em] text-stone-900 dark:text-stone-200 hover:text-[#3d6f9e] dark:hover:text-[#7fabd6]"><img src="assets/hd-logo.png" width="83" height="178" alt="" class="h-[22px] w-auto block"><span>HibbittsDesign<wbr>.org</span></a>
+        <a href="https://hibbittsdesign.org/" class="wordmark"><img src="assets/hd-logo.png" width="83" height="178" alt=""><span>HibbittsDesign<wbr>.org</span></a>
         <span aria-hidden="true" class="text-[13px] text-stone-400 dark:text-stone-600">/</span>
         <a href="https://grav-helios-converters.hibbittsdesign.org/" class="text-[13px] text-stone-500 dark:text-stone-400 hover:text-stone-700 dark:hover:text-stone-300">Helios Converters</a>
       </nav>
@@ -162,20 +166,20 @@
 
   <div class="max-w-[68ch] mx-auto">
 
-  <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed"><a href="https://getgrav.org/downloads/skeletons#helios-open-reader" class="font-semibold text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">Grav Helios Open Reader</a> <strong>gives your book or guide a better reading experience, built for the web</strong> – and gives you direct access to the content behind it: portable, future-friendly Markdown files ready for the 5Rs (retain, reuse, revise, remix, redistribute), no database, no WordPress or Pressbooks hosting to maintain. Because Pressbooks exports follow a single, consistent format, conversions are typically a fairly close, faithful match to your original book. Prefer output with no Helios dependency at all? Turn on <strong>Standard Markdown</strong> below for plain Markdown that also works on other Markdown-based platforms.</p>
+  <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed"><a href="https://getgrav.org/downloads/skeletons#helios-open-reader" class="tlink underline underline-offset-2">Grav Helios Open Reader</a> <strong>gives your book or guide a better reading experience, built for the web</strong> – and gives you direct access to the content behind it: portable, future-friendly Markdown files ready for the 5Rs (retain, reuse, revise, remix, redistribute), no database, no WordPress or Pressbooks hosting to maintain. Because Pressbooks exports follow a single, consistent format, conversions are typically a fairly close, faithful match to your original book. Prefer output with no Helios dependency at all? Turn on <strong>Standard Markdown</strong> below for plain Markdown that also works on other Markdown-based platforms.</p>
 
   <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed">For readers, that means a clean, distraction-free layout with light and dark mode, structured sections and chapters, and purpose-built callout blocks for objectives, definitions, and key takeaways – a more modern experience than a PDF or a scanned book, designed to be enjoyable.</p>
 
   <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed">Readers keep their place: <strong>Keep My Place</strong> remembers the last section they read in that browser and offers a one-click way back in next time, something few other reading tools offer.</p>
 
   <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed">Any single page can be embedded into Canvas, Moodle, or Brightspace with a simple URL parameter, keeping readers inside the LMS instead of a separate website. For example:
-    <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/section-2/11-defining-social-psychology-history-and-principl?embedded=true" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-semibold text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">
+    <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/section-2/11-defining-social-psychology-history-and-principl?embedded=true" target="_blank" rel="noopener noreferrer" class="tlink inline-flex items-center gap-1 underline underline-offset-2">
       this section
       <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 3H13v3.5M13 3L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>, displayed with no header or sidebar. Optional Git Sync enables open collaborative authoring, with your content always directly accessible whenever you need it.</p>
 
   <p class="text-[15px] text-stone-500 dark:text-stone-400 mb-5 leading-relaxed">Convert your own Pressbooks publication and browse the resulting Markdown files directly – no Grav or Helios installation needed to see what carries over. Or start with a real example:
-    <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-semibold text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">
+    <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader-pressbooks-posp/" target="_blank" rel="noopener noreferrer" class="tlink inline-flex items-center gap-1 underline underline-offset-2">
       Principles of Social Psychology
       <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 3H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9.5 3H13v3.5M13 3L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
@@ -193,7 +197,7 @@
       </li>
       <li class="flex items-start gap-3 text-[15px] text-stone-500 dark:text-stone-400">
         <div class="shrink-0 w-[22px] h-[22px] bg-[#ede9f4] dark:bg-[#2a2340] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">3</div>
-        <span>Extract the ZIP and copy the book folder from inside the extracted <code>pages</code> folder into your <a href="https://getgrav.org/downloads/skeletons#helios-open-reader" class="font-semibold text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">Grav Helios Open Reader</a> installation's <code>user/pages/</code> directory. Don't have a Grav Helios Open Reader yet? <a href="https://getgrav.org/download/skeletons/helios-open-reader/latest" class="font-semibold text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">Download the skeleton package</a>.</span>
+        <span>Extract the ZIP and copy the book folder from inside the extracted <code>pages</code> folder into your <a href="https://getgrav.org/downloads/skeletons#helios-open-reader" class="tlink underline underline-offset-2">Grav Helios Open Reader</a> installation's <code>user/pages/</code> directory. Don't have a Grav Helios Open Reader yet? <a href="https://getgrav.org/download/skeletons/helios-open-reader/latest" class="tlink underline underline-offset-2">Download the skeleton package</a>.</span>
       </li>
       <li class="flex items-start gap-3 text-[15px] text-stone-500 dark:text-stone-400">
         <div class="shrink-0 w-[22px] h-[22px] bg-[#ede9f4] dark:bg-[#2a2340] text-slate-700 dark:text-slate-400 rounded-full text-xs font-semibold flex items-center justify-center mt-px" aria-hidden="true">4</div>
@@ -202,7 +206,7 @@
     </ol>
   </nav>
 
-  <p class="text-[15px] text-stone-500 dark:text-stone-400 -mt-2 mb-5">New to Grav Helios Open Reader? The <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader/readme" class="font-semibold text-[#3d6f9e] dark:text-[#7fabd6] underline underline-offset-2">ReadMe</a> covers installation, configuration, and getting started.</p>
+  <p class="text-[15px] text-stone-500 dark:text-stone-400 -mt-2 mb-5">New to Grav Helios Open Reader? The <a href="https://demo.hibbittsdesign.org/grav-helios-open-reader/readme" class="tlink underline underline-offset-2">ReadMe</a> covers installation, configuration, and getting started.</p>
 
   </div>
 

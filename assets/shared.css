@@ -1,0 +1,76 @@
+/* ============================================================
+   shared.css — design tokens + the handful of components that
+   are identical across hibbittsdesign.org, the converters, and
+   the demo page.
+
+   This is a vendored copy, not a file loaded from one shared
+   origin — it's manually copied into each site's own assets/
+   folder and kept in sync by hand when edited (no build/sync
+   step). Load it BEFORE the site's own stylesheet so local
+   rules can still override where a site needs something
+   different.
+   ============================================================ */
+
+@font-face{font-family:"Public Sans";src:url("fonts/PublicSans-Variable.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:"JetBrains Mono";src:url("fonts/JetBrainsMono-Variable.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap;}
+
+:root{
+  --font-sans:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:12px;
+  --radius-xl:16px;
+  --radius-pill:100px;
+
+  /* neutral link + the two product-family accents */
+  --link:#3d6f9e;
+  --docsify:#3f8f52;
+  --docsify-soft:#e7f3e8;
+  --helios:#6a5691;
+  --helios-soft:#ede9f4;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --link:#7fabd6;
+    --docsify:#6fc484;
+    --docsify-soft:#1e3324;
+    --helios:#b09bd4;
+    --helios-soft:#2a2340;
+  }
+}
+:root[data-theme="dark"]{
+  --link:#7fabd6;
+  --docsify:#6fc484;
+  --docsify-soft:#1e3324;
+  --helios:#b09bd4;
+  --helios-soft:#2a2340;
+}
+
+:focus-visible{
+  outline:2px solid var(--link);
+  outline-offset:2px;
+  border-radius:2px;
+}
+
+/* "HibbittsDesign.org" back-link, used on every converter/demo
+   header. (The hub's own header uses a two-weight variant and
+   keeps its own .brand rule instead of this one.) */
+.wordmark{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-family:var(--font-mono);
+  font-size:16.5px;
+  font-weight:700;
+  letter-spacing:0.02em;
+  color:var(--ink);
+  text-decoration:none;
+}
+.wordmark img{height:22px; width:auto; display:block;}
+.wordmark:hover, .wordmark:focus-visible{color:var(--link);}
+
+/* generic inline text link within prose */
+.tlink{color:var(--link); font-weight:600; text-decoration:none;}
+.tlink:hover, .tlink:focus-visible{text-decoration:underline;}
