@@ -32,13 +32,29 @@ $skipImages       = !empty($_POST['skip_images']);
 $figureHtml       = !empty($_POST['figure_html']);
 $portableMarkdown = !empty($_POST['portable_markdown']);
 
+// Where the book will go: Grav Helios Open Reader shows a book's sections at the top of the
+// site, while Grav Open Publishing Space (and any Grav site, with Standard Markdown) keeps
+// the book's folder in its page addresses. With no destination sent (an older copy of the
+// form), the addresses stay as they were before, for Helios Open Reader
+$destination = '';
+if (isset($_POST['destination'])) {
+    $destination = $_POST['destination'];
+}
+$keepBookFolderInAddresses = false;
+if ($destination === 'open-publishing') {
+    $keepBookFolderInAddresses = true;
+}
+if ($portableMarkdown) {
+    $keepBookFolderInAddresses = true;
+}
+
 try {
     $parser = new Parser($html);
     if (!$parser->isValid()) {
         throw new \Exception('No Pressbooks structure found in the uploaded file.');
     }
 
-    $builder = new ZipBuilder($parser, $skipImages, $figureHtml, false, $portableMarkdown);
+    $builder = new ZipBuilder($parser, $skipImages, $figureHtml, false, $portableMarkdown, $keepBookFolderInAddresses);
     $zipPath = $builder->build();
     @unlink($zipPath); // preview only needs the in-memory pages, not the zip file itself
 } catch (\Throwable $e) {

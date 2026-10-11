@@ -55,6 +55,22 @@ $figureHtml       = !empty($_POST['figure_html']);
 $embedH5p         = !empty($_POST['embed_h5p']);
 $portableMarkdown = !empty($_POST['portable_markdown']);
 
+// Where the book will go: Grav Helios Open Reader shows a book's sections at the top of the
+// site, while Grav Open Publishing Space (and any Grav site, with Standard Markdown) keeps
+// the book's folder in its page addresses. With no destination sent (an older copy of the
+// form), the addresses stay as they were before, for Helios Open Reader
+$destination = '';
+if (isset($_POST['destination'])) {
+    $destination = $_POST['destination'];
+}
+$keepBookFolderInAddresses = false;
+if ($destination === 'open-publishing') {
+    $keepBookFolderInAddresses = true;
+}
+if ($portableMarkdown) {
+    $keepBookFolderInAddresses = true;
+}
+
 // Parse structure
 try {
     $parser = new Parser($html);
@@ -87,7 +103,7 @@ if (!empty($_FILES['cover_image']['tmp_name']) && $_FILES['cover_image']['error'
 
 // Convert and build zip
 try {
-    $builder = new ZipBuilder($parser, $skipImages, $figureHtml, $embedH5p, $portableMarkdown);
+    $builder = new ZipBuilder($parser, $skipImages, $figureHtml, $embedH5p, $portableMarkdown, $keepBookFolderInAddresses);
     if ($coverImageData !== null) {
         $builder->setCoverImage($coverImageData, $coverImageFilename);
     }

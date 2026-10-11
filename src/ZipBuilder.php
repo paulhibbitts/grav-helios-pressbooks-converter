@@ -27,6 +27,11 @@ class ZipBuilder
     private string $sectionLabel  = 'Section';
     private string $bookBase;
 
+    // The start of every page address in the book: '' when the book's sections are
+    // at the top of the site (Grav Helios Open Reader), or '/book-slug' when they
+    // stay inside the book's folder (Grav Open Publishing Space and plain Grav)
+    private string $bookRoute = '';
+
     public function setCoverImage(string $data, string $filename): void
     {
         $this->coverImageData     = $data;
@@ -55,14 +60,27 @@ class ZipBuilder
         return $this->zipBin;
     }
 
-    public function __construct(Parser $parser, bool $skipImages = true, bool $figureHtml = true, bool $embedH5p = false, bool $portableMarkdown = false)
+    public function __construct(Parser $parser, bool $skipImages = true, bool $figureHtml = true, bool $embedH5p = false, bool $portableMarkdown = false, bool $keepBookFolderInAddresses = false)
     {
         $this->parser           = $parser;
         $this->skipImages       = $skipImages;
         $this->embedH5p         = $embedH5p;
         $this->portableMarkdown = $portableMarkdown;
-        $this->converter        = new ContentConverter($parser->linkMap, $figureHtml, $embedH5p, $portableMarkdown);
         $this->bookBase         = 'pages/10.' . $parser->bookSlug;
+
+        // Grav Helios Open Reader shows a book's sections at the top of the site
+        // (/section-1/...), but other Grav sites keep the book's folder in the
+        // address (/book-slug/section-1/...), so links and redirects need it too
+        if ($keepBookFolderInAddresses) {
+            $this->bookRoute = '/' . $parser->bookSlug;
+        }
+
+        // Links between chapters use the same addresses
+        $linkMap = [];
+        foreach ($parser->linkMap as $id => $route) {
+            $linkMap[$id] = $this->bookRoute . $route;
+        }
+        $this->converter = new ContentConverter($linkMap, $figureHtml, $embedH5p, $portableMarkdown);
     }
 
     // Build the zip and return the path to the temp file
@@ -368,7 +386,7 @@ class ZipBuilder
         // with no redirect would otherwise render blank in any Grav site, portable or not.
         if (!$secBody && $pages) {
             $firstSlug = Helpers::slugify($pages[0][0]);
-            $fm[] = 'redirect: /section-' . $secNum . '/' . $firstSlug;
+            $fm[] = 'redirect: ' . $this->bookRoute . '/section-' . $secNum . '/' . $firstSlug;
         }
         $fm[] = '---';
 
@@ -505,6 +523,10 @@ class ZipBuilder
             $lines[] = '     any Grav site\'s user/pages/ directory (no Helios plugin required),';
             $lines[] = '     or adapt it for another Markdown-based platform';
             $lines[] = '  2. Review this file for any warnings or manual fixes needed';
+        } elseif ($this->bookRoute !== '') {
+            $lines[] = '  1. Copy the book folder from inside the extracted pages folder into';
+            $lines[] = '     your Grav Open Publishing Space site\'s user/pages/ directory';
+            $lines[] = '  2. Review this file for any warnings or manual fixes needed';
         } else {
             $lines[] = '  1. Copy the book folder from inside the extracted pages folder into';
             $lines[] = '     your Grav Helios Open Reader installation\'s user/pages/ directory';
@@ -513,9 +535,14 @@ class ZipBuilder
         $lines[] = '';
         $lines[] = 'Conversion Settings';
         $lines[] = '-------------------';
-        $lines[] = '  Format:  ' . ($this->portableMarkdown
-            ? 'Standard Markdown (no Helios shortcodes)'
-            : 'Grav Helios Open Reader (shortcodes + full frontmatter)');
+        if ($this->portableMarkdown) {
+            $formatText = 'Standard Markdown (no Grav-specific shortcodes)';
+        } elseif ($this->bookRoute !== '') {
+            $formatText = 'Grav Open Publishing Space (shortcodes + full frontmatter)';
+        } else {
+            $formatText = 'Grav Helios Open Reader (shortcodes + full frontmatter)';
+        }
+        $lines[] = '  Format:  ' . $formatText;
         $lines[] = '  Images:  ' . ($this->skipImages
             ? 'kept as remote URLs — may break if source site goes offline'
             : 'downloaded and bundled in ZIP');
