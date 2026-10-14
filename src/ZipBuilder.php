@@ -455,7 +455,8 @@ class ZipBuilder
         $opts = [
             'http' => [
                 'method'          => 'GET',
-                'header'          => 'User-Agent: Mozilla/5.0',
+                // a descriptive name, as many Pressbooks sites refuse the bare "Mozilla/5.0" as a bot
+                'header'          => 'User-Agent: Mozilla/5.0 (compatible; PressbooksConverter/1.0; +https://pressbooks-converter.hibbittsdesign.org/)',
                 'timeout'         => 15,
                 'follow_location' => 1,
                 'max_length'      => 20 * 1024 * 1024, // 20 MB cap per image

@@ -39,6 +39,10 @@ class ContentConverter
         // Remove empty inline code elements (produce stray `` in output)
         $html = preg_replace('/<code>\s*<\/code>/', '', $html);
 
+        // A chapter's own level-1 headings would sit beside the page's title (also a level-1 heading,
+        // shown by the theme), which breaks heading navigation for screen readers
+        $html = $this->demoteHeadings($html);
+
         [$html, $fnDefs]   = $this->extractFootnotes($html);
         $html               = $this->fixVideos($html);
         $html               = $this->fixDefinitionLists($html);
@@ -142,6 +146,20 @@ class ContentConverter
 
         $result = preg_replace('/\n{3,}/', "\n\n", $result);
         return trim($result);
+    }
+
+    // When a chapter uses level-1 headings (<h1>), every heading in it moves down one level
+    // (h1 to h2, h2 to h3 ... h5 to h6), so the page's title is its only level-1 heading and the
+    // chapter's own heading order is kept. Chapters without an <h1> are left as they are.
+    private function demoteHeadings(string $html): string
+    {
+        if (!preg_match('/<h1[\s>]/i', $html)) {
+            return $html;
+        }
+        // one pass over the tags, so each heading moves only once; h6 is the lowest level and stays
+        return preg_replace_callback('/<(\/?)h([1-5])(?=[\s>])/i', function ($match) {
+            return '<' . $match[1] . 'h' . ((int) $match[2] + 1);
+        }, $html);
     }
 
     // Puts an image on its own line when the source glued it directly to following text
@@ -722,7 +740,9 @@ class ContentConverter
             $newTag = 'example';
         } elseif (preg_match('/^Questions to Consider/i', $first)) {
             $newTag = 'reflection';
-        } elseif (preg_match('/^###?\s*References\b/i', $first)) {
+        } elseif (preg_match('/^#{2,4}\s*References\b/i', $first)) {
+            // a level 2 to 4 "References" heading (level 2 or 3 in the book, one level lower when
+            // the chapter's headings were moved down, see demoteHeadings)
             $newTag = 'references';
         } else {
             $newTag = $tag;
