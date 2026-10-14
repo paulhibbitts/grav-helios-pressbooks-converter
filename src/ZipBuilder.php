@@ -32,6 +32,13 @@ class ZipBuilder
     // stay inside the book's folder (Grav Open Publishing Space and plain Grav)
     private string $bookRoute = '';
 
+    // A shorter label for the site's menu when the book's title is long (Grav Open
+    // Publishing Space only), or '' to let the menu show the full title
+    private string $menuLabel = '';
+
+    // Titles longer than this get a shorter menu label, when one can be found
+    private const MENU_LABEL_MAX_LENGTH = 35;
+
     public function setCoverImage(string $data, string $filename): void
     {
         $this->coverImageData     = $data;
@@ -73,6 +80,12 @@ class ZipBuilder
         // address (/book-slug/section-1/...), so links and redirects need it too
         if ($keepBookFolderInAddresses) {
             $this->bookRoute = '/' . $parser->bookSlug;
+        }
+
+        // In Grav Open Publishing Space the book is one item in the site's menu,
+        // so a long title gets a shorter menu label (the page keeps its full title)
+        if ($keepBookFolderInAddresses && !$portableMarkdown) {
+            $this->menuLabel = $this->shortMenuLabel($parser->bookTitle);
         }
 
         // Links between chapters use the same addresses
@@ -129,6 +142,10 @@ class ZipBuilder
             $lines = ['---', 'title: ' . Helpers::yamlStr($p->bookTitle), '---'];
         } else {
             $lines = ['---', 'title: ' . Helpers::yamlStr($p->bookTitle)];
+            // Grav's menu shows menu: in place of title: when it's set
+            if ($this->menuLabel !== '') {
+                $lines[] = 'menu: ' . Helpers::yamlStr($this->menuLabel);
+            }
             if ($p->bookSubtitle) {
                 $lines[] = 'subtitle: ' . Helpers::yamlStr($p->bookSubtitle);
             }
@@ -499,6 +516,9 @@ class ZipBuilder
             str_repeat('-', strlen('Book Metadata')),
             '  Title:   ' . $p->bookTitle,
         ];
+        if ($this->menuLabel !== '') {
+            $lines[] = '  Menu:    ' . $this->menuLabel . ' (shorter label for the site\'s menu)';
+        }
         if ($p->bookAuthors) {
             $lines[] = '  Authors: ' . $this->formatAuthors($p->bookAuthors);
         }
@@ -528,6 +548,13 @@ class ZipBuilder
             $lines[] = '  1. Copy the book folder from inside the extracted pages folder into';
             $lines[] = '     your Grav Open Publishing Space site\'s user/pages/ directory';
             $lines[] = '  2. Review this file for any warnings or manual fixes needed';
+            if ($this->menuLabel !== '') {
+                $lines[] = '  3. To change the book\'s menu label, edit menu: in the book\'s page';
+                $lines[] = '     (in Admin: the book\'s page, Advanced tab, Menu)';
+            } elseif (mb_strlen($p->bookTitle) > self::MENU_LABEL_MAX_LENGTH) {
+                $lines[] = '  3. The book\'s title is long for the site\'s menu: to shorten it there,';
+                $lines[] = '     add menu: "Short Title" to the book\'s page (in Admin: Advanced tab, Menu)';
+            }
         } else {
             $lines[] = '  1. Copy the book folder from inside the extracted pages folder into';
             $lines[] = '     your Grav Helios Open Reader installation\'s user/pages/ directory';
@@ -668,6 +695,58 @@ class ZipBuilder
         foreach ($this->converter->h5pEmbeds as $embed) {
             $this->allH5pEmbeds[] = ['page' => $pageTitle, 'source' => $embed['source'], 'embed' => $embed['embed']];
         }
+    }
+
+    // Find a shorter menu label for a long book title, using the title's natural
+    // break points in turn, and stopping as soon as the label is short enough:
+    //   1. the part before a subtitle separator (": ", " – ", " - ")
+    //   2. without edition wording ("2nd Edition", "Third Edition", "Version 2")
+    //   3. up to and including the first acronym in brackets ("... (UDL)")
+    // Returns '' when the title is already short, or when no break point makes it
+    // short enough (cutting a title mid-phrase reads worse than a long label).
+    private function shortMenuLabel(string $title): string
+    {
+        $title = trim($title);
+        if (mb_strlen($title) <= self::MENU_LABEL_MAX_LENGTH) {
+            return '';
+        }
+        $label = $title;
+
+        // 1. Subtitle separator: keep the part before it, if it's at least two words
+        $parts = preg_split('/\s*:\s+|\s+[–—-]\s+/u', $label, 2);
+        if (count($parts) === 2 && str_word_count($parts[0]) >= 2) {
+            $label = trim($parts[0]);
+        }
+        if (mb_strlen($label) <= self::MENU_LABEL_MAX_LENGTH) {
+            return $label;
+        }
+
+        // 2. Edition wording at the end, with an optional comma or brackets before it,
+        //    for example ", 2nd Edition", "1st International H5P Edition", "(Version 2)"
+        $withoutEdition = preg_replace(
+            '/[\s,]*\(?\b(\d+(st|nd|rd|th)|first|second|third|fourth|fifth|sixth|revised|new)\b[\w\s]*\bedition\)?$/iu',
+            '',
+            $label
+        );
+        $withoutEdition = preg_replace('/[\s,]*\(?\bversion\s+[\d.]+\)?$/iu', '', $withoutEdition);
+        if (str_word_count($withoutEdition) >= 2) {
+            $label = trim($withoutEdition);
+        }
+        if (mb_strlen($label) <= self::MENU_LABEL_MAX_LENGTH) {
+            return $label;
+        }
+
+        // 3. The first acronym in brackets (two or more capital letters, no spaces):
+        //    keep the words before it and the acronym itself
+        if (preg_match('/^(.+?\(\s*[A-Z][A-Z0-9&.\-]+\s*\))/u', $label, $match)) {
+            $beforeAcronym = $match[1];
+            if (str_word_count($beforeAcronym) >= 3 && mb_strlen($beforeAcronym) <= self::MENU_LABEL_MAX_LENGTH) {
+                return trim($beforeAcronym);
+            }
+        }
+
+        // No break point made it short enough, so the menu shows the full title
+        return '';
     }
 
     private function formatAuthors(array $authors): string
