@@ -39,6 +39,9 @@ class ZipBuilder
     // Titles longer than this get a shorter menu label, when one can be found
     private const MENU_LABEL_MAX_LENGTH = 35;
 
+    // A label still over the limit is used only when it's at least this much shorter
+    private const MENU_LABEL_MIN_SAVING = 10;
+
     public function setCoverImage(string $data, string $filename): void
     {
         $this->coverImageData     = $data;
@@ -702,8 +705,10 @@ class ZipBuilder
     //   1. the part before a subtitle separator (": ", " – ", " - ")
     //   2. without edition wording ("2nd Edition", "Third Edition", "Version 2")
     //   3. up to and including the first acronym in brackets ("... (UDL)")
-    // Returns '' when the title is already short, or when no break point makes it
-    // short enough (cutting a title mid-phrase reads worse than a long label).
+    // If no break point makes it short enough, the shortest label found is still used
+    // when it's clearly shorter than the title. Returns '' when the title is already
+    // short, or when no break point helps (cutting a title mid-phrase reads worse
+    // than a long label).
     private function shortMenuLabel(string $title): string
     {
         $title = trim($title);
@@ -740,12 +745,19 @@ class ZipBuilder
         //    keep the words before it and the acronym itself
         if (preg_match('/^(.+?\(\s*[A-Z][A-Z0-9&.\-]+\s*\))/u', $label, $match)) {
             $beforeAcronym = $match[1];
-            if (str_word_count($beforeAcronym) >= 3 && mb_strlen($beforeAcronym) <= self::MENU_LABEL_MAX_LENGTH) {
-                return trim($beforeAcronym);
+            if (str_word_count($beforeAcronym) >= 3) {
+                $label = trim($beforeAcronym);
             }
         }
+        if (mb_strlen($label) <= self::MENU_LABEL_MAX_LENGTH) {
+            return $label;
+        }
 
-        // No break point made it short enough, so the menu shows the full title
+        // Still over the limit: use the label anyway if it's clearly shorter than the
+        // title, otherwise the menu shows the full title
+        if (mb_strlen($title) - mb_strlen($label) >= self::MENU_LABEL_MIN_SAVING) {
+            return $label;
+        }
         return '';
     }
 
