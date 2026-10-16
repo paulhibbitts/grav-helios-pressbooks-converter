@@ -8,6 +8,7 @@ class ZipBuilder
     private bool             $skipImages;
     private bool             $embedH5p;
     private bool             $portableMarkdown;
+    private bool             $captionedImagesAsMarkdown = false;
 
     public array $warnings       = [];
     public array $errors         = [];
@@ -95,6 +96,15 @@ class ZipBuilder
         $linkMap = [];
         foreach ($parser->linkMap as $id => $route) {
             $linkMap[$id] = $this->bookRoute . $route;
+        }
+        // Captioned images written as HTML <figure> keep their remote address: the image download
+        // step only finds Markdown images, and Grav doesn't adjust image addresses in raw HTML (a
+        // downloaded image there would need its full address). So when images are downloaded,
+        // captioned images use the Markdown form instead - the image, then its caption in italics -
+        // and are downloaded like any other image
+        if ($figureHtml && !$skipImages) {
+            $figureHtml = false;
+            $this->captionedImagesAsMarkdown = true;
         }
         $this->converter = new ContentConverter($linkMap, $figureHtml, $embedH5p, $portableMarkdown);
     }
@@ -576,7 +586,10 @@ class ZipBuilder
         $lines[] = '  Format:  ' . $formatText;
         $lines[] = '  Images:  ' . ($this->skipImages
             ? 'kept as remote URLs — may break if source site goes offline'
-            : 'downloaded and bundled in ZIP');
+            : 'downloaded and bundled in ZIP')
+            . ($this->captionedImagesAsMarkdown
+                ? ' (captioned images as a Markdown image with an italic caption, so they are downloaded too)'
+                : '');
         if ($this->embedH5p) {
             $h5pText = $this->portableMarkdown
                 ? 'embedded via a plain <iframe> + H5P\'s own resizer script'
