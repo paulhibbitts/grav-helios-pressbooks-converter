@@ -578,14 +578,18 @@ class ZipBuilder
         } elseif ($this->bookRoute !== '') {
             $lines[] = '  1. Copy the book folder from inside the extracted pages folder into';
             $lines[] = '     your Grav Open Publishing Space site\'s user/pages/ directory';
-            $lines[] = '  2. Review this file for any warnings or manual fixes needed';
+            // the menu label step (when there is one) comes before Review, which is always last
+            $reviewNumber = 2;
             if ($this->menuLabel !== '') {
-                $lines[] = '  3. To change the book\'s menu label, edit menu: in the book\'s page';
+                $lines[] = '  2. To change the book\'s menu label, edit menu: in the book\'s page';
                 $lines[] = '     (in Admin: the book\'s page, Advanced tab, Menu)';
+                $reviewNumber = 3;
             } elseif (mb_strlen($p->bookTitle) > self::MENU_LABEL_MAX_LENGTH) {
-                $lines[] = '  3. The book\'s title is long for the site\'s menu: to shorten it there,';
+                $lines[] = '  2. The book\'s title is long for the site\'s menu: to shorten it there,';
                 $lines[] = '     add menu: "Short Title" to the book\'s page (in Admin: Advanced tab, Menu)';
+                $reviewNumber = 3;
             }
+            $lines[] = '  ' . $reviewNumber . '. Review this file for any warnings or manual fixes needed';
         } else {
             $lines[] = '  1. Copy the book folder from inside the extracted pages folder into';
             $lines[] = '     your Grav Helios Open Reader installation\'s user/pages/ directory';
