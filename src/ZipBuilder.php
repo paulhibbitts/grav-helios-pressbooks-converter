@@ -18,6 +18,10 @@ class ZipBuilder
 
     private array $allH5pEmbeds = [];
 
+    // Pages with a table that wasn't in the Pressbooks export, only its WordPress shortcode
+    // (such as [table id=5] from the TablePress plugin): page title => number of tables
+    private array $tablePluginPages = [];
+
     private array   $zipFiles = []; // zipPath => string content
     private array   $zipBin   = []; // zipPath => binary content (images)
 
@@ -231,8 +235,10 @@ class ZipBuilder
                 $announcementBody .= implode(' ', $attrParts) . "\n\n";
             }
         } else {
+            // names the site the book is going into (Open Publishing Space or Helios Open Reader)
             $mediaItems = $this->embedH5p ? 'Video and audio' : 'Video, audio, and H5P content';
-            $announcementBody .= "*[Grav Helios Open Reader](https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1) supports embedded video, audio, and H5P activities. {$mediaItems} in this converted book may appear as links rather than embedded content.*\n\n";
+            $destinationLink = '[' . $this->destinationName() . '](' . $this->destinationUrl() . ')';
+            $announcementBody .= "*{$destinationLink} supports embedded video, audio, and H5P activities. {$mediaItems} in this converted book may appear as links rather than embedded content.*\n\n";
         }
 
         $annoTitle = $p->bookTitle . ' — Imported from Pressbooks';
@@ -263,6 +269,7 @@ class ZipBuilder
                 $content = '> **Conversion error:** ' . $e->getMessage() . "\n";
             }
             $this->harvestH5pEmbeds($fm['title']);
+            $this->noteTablePluginShortcodes($fm['title'], $content);
             $pages[] = [$fm['title'], $content];
         }
 
@@ -287,6 +294,7 @@ class ZipBuilder
                 } catch (\Exception $e) {
                     $this->errors[] = "failed to convert part intro \"{$part['title']}\": " . $e->getMessage();
                 }
+                $this->noteTablePluginShortcodes($part['title'], $partBody);
             }
 
             $objectivesText = null;
@@ -305,6 +313,7 @@ class ZipBuilder
                     $content = '> **Conversion error:** ' . $e->getMessage() . "\n";
                 }
                 $this->harvestH5pEmbeds($ch['title']);
+                $this->noteTablePluginShortcodes($ch['title'], $content);
                 $pages[] = [$ch['title'], $content];
             }
 
@@ -344,6 +353,7 @@ class ZipBuilder
                 $content = '> **Conversion error:** ' . $e->getMessage() . "\n";
             }
             $this->harvestH5pEmbeds($bm['title']);
+            $this->noteTablePluginShortcodes($bm['title'], $content);
             $pages[] = [$bm['title'], $content];
         }
 
@@ -556,7 +566,15 @@ class ZipBuilder
             $lines[] = '  1. Copy the book folder from inside the extracted pages folder into';
             $lines[] = '     any Grav site\'s user/pages/ directory (no Helios plugin required),';
             $lines[] = '     or adapt it for another Markdown-based platform';
-            $lines[] = '  2. Review this file for any warnings or manual fixes needed';
+            // Standard Markdown has no cover image setting, so a cover (uploaded or from
+            // Pressbooks) isn't included: say so, as one may have been uploaded on the form
+            if ($this->coverImageData !== null || $p->bookCoverUrl) {
+                $lines[] = '  2. The book\'s cover image isn\'t included, as Standard Markdown has no';
+                $lines[] = '     cover setting: to show it, add the image to the book\'s page by hand';
+                $lines[] = '  3. Review this file for any warnings or manual fixes needed';
+            } else {
+                $lines[] = '  2. Review this file for any warnings or manual fixes needed';
+            }
         } elseif ($this->bookRoute !== '') {
             $lines[] = '  1. Copy the book folder from inside the extracted pages folder into';
             $lines[] = '     your Grav Open Publishing Space site\'s user/pages/ directory';
@@ -634,6 +652,20 @@ class ZipBuilder
             $lines[] = '    and will not resolve outside a Grav site — check/update these manually if publishing';
             $lines[] = '    to another platform';
         }
+        // Tables the Pressbooks export left out (see noteTablePluginShortcodes())
+        if ($this->tablePluginPages) {
+            $lines[] = '';
+            $lines[] = 'Tables Not in the Export';
+            $lines[] = '------------------------';
+            $lines[] = '  These pages use a WordPress table plugin (TablePress), whose tables the';
+            $lines[] = '  Pressbooks export leaves out, keeping only a shortcode such as [table id=5].';
+            $lines[] = '  Copy each table from the book on Pressbooks into the page by hand:';
+            foreach ($this->tablePluginPages as $pageTitle => $count) {
+                $tableWord = $count === 1 ? '1 table' : $count . ' tables';
+                $lines[] = '  - ' . $pageTitle . ' (' . $tableWord . ')';
+            }
+        }
+
         $lines[] = '';
         $lines[] = 'Media Support';
         $lines[] = '-------------';
@@ -642,7 +674,7 @@ class ZipBuilder
             $lines[] = '  code). H5P activities are embedded the same way when "Embed H5P activities"';
             $lines[] = '  is enabled; otherwise they are left as links to the original source.';
         } else {
-            $lines[] = '  Helios Open Reader supports embedded video, audio, and H5P activities,';
+            $lines[] = '  ' . $this->destinationName() . ' supports embedded video, audio, and H5P activities,';
             $lines[] = '  but converted Pressbooks content may contain links to these items rather';
             $lines[] = '  than actual embeds. Review each page and replace links with the appropriate';
             $lines[] = '  shortcode where needed (e.g. [h5p url="..."] for H5P activities).';
@@ -705,6 +737,37 @@ class ZipBuilder
     }
 
     // ── Misc helpers ──────────────────────────────────────────────────────────
+
+    // The site the book is going into, for the import notice and conversion notes. Grav Open
+    // Publishing Space keeps the book's folder in page addresses; Helios Open Reader doesn't
+    // (Standard Markdown also keeps the folder, but has no site of its own to name)
+    private function destinationName(): string
+    {
+        if ($this->bookRoute !== '' && !$this->portableMarkdown) {
+            return 'Grav Open Publishing Space';
+        }
+        return 'Grav Helios Open Reader';
+    }
+
+    private function destinationUrl(): string
+    {
+        if ($this->bookRoute !== '' && !$this->portableMarkdown) {
+            return 'https://www.hibbittsdesign.org/grav-open-publishing-space.html';
+        }
+        return 'https://www.hibbittsdesign.org/Grav-Helios-Open-Reader-3560615470e080a79958c9c7dcd5d9a1';
+    }
+
+    // Notes a page whose table wasn't in the Pressbooks export: Pressbooks books can use a
+    // WordPress table plugin (TablePress), whose tables the export leaves out, keeping only
+    // its shortcode, such as [table id=5]. The converter can't recover the table, so the
+    // conversion notes name the page, for the table to be added by hand
+    private function noteTablePluginShortcodes(string $pageTitle, string $content): void
+    {
+        $count = preg_match_all('/\[table\s+id=["\']?\d+["\']?[^\]]*\]/i', $content);
+        if ($count > 0) {
+            $this->tablePluginPages[$pageTitle] = ($this->tablePluginPages[$pageTitle] ?? 0) + $count;
+        }
+    }
 
     private function harvestH5pEmbeds(string $pageTitle): void
     {
