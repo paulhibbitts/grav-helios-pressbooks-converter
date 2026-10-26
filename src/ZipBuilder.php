@@ -32,6 +32,9 @@ class ZipBuilder
 
     // How many part intro pages came from the book on Pressbooks, as the export left them out
     private int    $partIntrosFetched = 0;
+
+    // Why the last web request failed, for the conversion notes
+    private string $lastFetchError = '';
     private string $sectionLabel  = 'Section';
     private string $bookBase;
 
@@ -363,11 +366,17 @@ class ZipBuilder
             return [];
         }
 
+        $this->lastFetchError = '';
         $json = $this->fetchText($bookUrl . 'wp-json/pressbooks/v2/parts?per_page=100');
         $partsFromApi = $json !== null ? json_decode($json, true) : null;
         if (!is_array($partsFromApi)) {
+            if ($json === null) {
+                $reason = $this->lastFetchError ?: 'no response';
+            } else {
+                $reason = 'the response wasn\'t a list of parts (starts: ' . mb_substr(trim(strip_tags($json)), 0, 80) . ')';
+            }
             $this->warnings[] = 'the Pressbooks export has no intro pages for its parts, and they couldn\'t be'
-                              . ' fetched from ' . $bookUrl . ' – each section opens its first page instead';
+                              . ' fetched from ' . $bookUrl . ' (' . $reason . ') – each section opens its first page instead';
             return [];
         }
 
@@ -637,10 +646,18 @@ class ZipBuilder
             $opts['ssl']['verify_peer']      = $verify;
             $opts['ssl']['verify_peer_name'] = $verify;
             $ctx  = stream_context_create($opts);
+            $http_response_header = [];
             $data = @file_get_contents($url, false, $ctx);
             if ($data !== false) {
                 return $data;
             }
+            // When the site answered with an error (such as "HTTP/1.1 403 Forbidden"), keep its
+            // status line: trying again without verification wouldn't change the answer
+            if ($http_response_header) {
+                $this->lastFetchError = $http_response_header[0];
+                break;
+            }
+            $this->lastFetchError = 'no response: ' . preg_replace('/^.*?\):\s*/', '', error_get_last()['message'] ?? '');
             if ($verify && !$this->sslHintShown) {
                 $this->sslHintShown = true;
                 $this->warnings[]   = 'SSL certificate error — retrying without verification';
