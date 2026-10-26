@@ -666,6 +666,31 @@ class ContentConverter
             }
         }
 
+        // Plain textboxes that open with a "Learning Outcomes" or "Learning Objectives" heading
+        // (books that don't use Pressbooks' own Learning Objectives box) – the heading is
+        // dropped, as the Learning Objectives block shows its own title
+        foreach (iterator_to_array($xpath->query("//*[{$this->xc('textbox')}]")) as $div) {
+            $headingEl = $xpath->query('(.//h1|.//h2|.//h3|.//h4|.//h5|.//h6)[1]', $div)->item(0);
+            if (!$headingEl) {
+                continue;
+            }
+            $headingText = trim($headingEl->textContent);
+            $isObjectivesHeading = preg_match('/^learning (outcomes|objectives)$/i', $headingText);
+            // the heading must be the first thing in the box, not one further down
+            $opensTheBox = str_starts_with(trim($div->textContent), $headingText);
+            if (!$isObjectivesHeading || !$opensTheBox) {
+                continue;
+            }
+            $headingEl->parentNode->removeChild($headingEl);
+            $inner = $this->bodyHtml($div);
+            $counter++;
+            $ph             = "%%CALLOUT{$counter}%%";
+            $callouts[$ph]  = $this->portableMarkdown
+                ? "> [!TIP]\n> **{$headingText}**\n" . $quoteLines($this->toMarkdown($inner))
+                : "[objectives]\n" . $this->toMarkdown($inner) . "\n[/objectives]";
+            $div->parentNode->replaceChild($dom->createTextNode($ph), $div);
+        }
+
         // All remaining textboxes
         foreach (iterator_to_array($xpath->query("//*[{$this->xc('textbox')}]")) as $div) {
             $headerEl  = $xpath->query(".//*[{$this->xc('textbox__header')}]", $div)->item(0);
@@ -819,7 +844,9 @@ class ContentConverter
         $xpath = new \DOMXPath($dom);
 
         foreach (iterator_to_array($xpath->query('//a')) as $a) {
-            $newTab    = strtolower($a->getAttribute('target')) === '_blank';
+            // a link to one of the book's own pages (#chapter-...) opens in the same tab once converted
+            $newTab    = strtolower($a->getAttribute('target')) === '_blank'
+                       && !str_starts_with($a->getAttribute('href'), '#');
             $iconFound = false;
 
             // Icons inside the <a> tag

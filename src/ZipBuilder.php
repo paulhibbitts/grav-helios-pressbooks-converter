@@ -29,6 +29,9 @@ class ZipBuilder
     private ?string $coverImageFilename = null;
 
     private bool   $sslHintShown  = false;
+
+    // How many part intro pages came from the book on Pressbooks, as the export left them out
+    private int    $partIntrosFetched = 0;
     private string $sectionLabel  = 'Section';
     private string $bookBase;
 
@@ -283,9 +286,15 @@ class ZipBuilder
 
     private function buildParts(): void
     {
+        $missingIntros = $this->fetchMissingPartIntros();
+
         $secNum = 1;
         foreach ($this->parser->parts as $part) {
             $secNum++;
+
+            if (!$part['html'] && isset($missingIntros[$part['id']])) {
+                $part['html'] = $missingIntros[$part['id']];
+            }
 
             $partBody = '';
             if ($part['html']) {
@@ -294,6 +303,7 @@ class ZipBuilder
                 } catch (\Exception $e) {
                     $this->errors[] = "failed to convert part intro \"{$part['title']}\": " . $e->getMessage();
                 }
+                $this->harvestH5pEmbeds($part['title']);
                 $this->noteTablePluginShortcodes($part['title'], $partBody);
             }
 
@@ -334,6 +344,106 @@ class ZipBuilder
                 $labelOverride
             );
         }
+    }
+
+    // Some Pressbooks exports leave out every part's own page (its intro text and boxes), keeping
+    // only the part's chapters. The book on Pressbooks still has them, so get them from the
+    // book's REST API (wp-json/pressbooks/v2/parts). Returns part id => part HTML, for the parts
+    // with no intro in the export; a part that isn't found keeps its redirect to its first chapter
+    private function fetchMissingPartIntros(): array
+    {
+        $bookUrl = $this->parser->bookUrl;
+        $missingIds = [];
+        foreach ($this->parser->parts as $part) {
+            if (!$part['html'] && $part['chapters']) {
+                $missingIds[] = $part['id'];
+            }
+        }
+        if (!$missingIds || !$bookUrl) {
+            return [];
+        }
+
+        $json = $this->fetchText($bookUrl . 'wp-json/pressbooks/v2/parts?per_page=100');
+        $partsFromApi = $json !== null ? json_decode($json, true) : null;
+        if (!is_array($partsFromApi)) {
+            $this->warnings[] = 'the Pressbooks export has no intro pages for its parts, and they couldn\'t be'
+                              . ' fetched from ' . $bookUrl . ' – each section opens its first page instead';
+            return [];
+        }
+
+        // part slug => its page's HTML
+        $htmlBySlug = [];
+        foreach ($partsFromApi as $apiPart) {
+            $html = trim($apiPart['content']['rendered'] ?? '');
+            if (isset($apiPart['slug']) && $html !== '') {
+                $postUrl = $bookUrl . '?p=' . ($apiPart['id'] ?? '');
+                $html = $this->h5pAsExportPlaceholders($html, $postUrl);
+                $htmlBySlug[$apiPart['slug']] = $this->bookLinksAsExportLinks($html, $bookUrl);
+            }
+        }
+
+        $intros = [];
+        foreach ($missingIds as $id) {
+            // part ids are "part-{slug}", or "part-{slug}-wrapper" in exports without part pages
+            $slug = preg_replace('/^part-|-wrapper$/', '', $id);
+            if (isset($htmlBySlug[$slug])) {
+                $intros[$id] = $htmlBySlug[$slug];
+            }
+        }
+        $this->partIntrosFetched = count($intros);
+        return $intros;
+    }
+
+    // On the web, an H5P activity is an empty iframe that H5P's script fills in, which would be
+    // lost in conversion. Swap each one for the link box the export uses instead, such as
+    // <a href="https://host/book/?p=17#h5p-1">, so it's converted the same way as in chapters
+    private function h5pAsExportPlaceholders(string $html, string $postUrl): string
+    {
+        return preg_replace_callback(
+            '/<div id="h5p-(\d+)"[^>]*>.*?<\/iframe>\s*<\/div>\s*<\/div>/s',
+            function ($m) use ($postUrl) {
+                $title = preg_match('/<iframe[^>]*\btitle="([^"]*)"/', $m[0], $t) ? $t[1] : 'Interactive Activity';
+                $url   = $postUrl . '#h5p-' . $m[1];
+                return '<div class="textbox interactive-content"><p><a href="' . $url . '" title="' . $title . '">'
+                     . $url . '</a></p></div>';
+            },
+            $html
+        );
+    }
+
+    // On the web, links to the book's own pages are full addresses, such as
+    // https://host/book/chapter/udl-guidelines/, where the export uses the page's id
+    // (#chapter-udl-guidelines). Swap each one for its id, so it's converted to the address
+    // of the converted page, like links in chapters. Links to a page not in the book stay as they are
+    private function bookLinksAsExportLinks(string $html, string $bookUrl): string
+    {
+        // the book's address with or without https, then the page type and its slug
+        $bookAddress = preg_quote(preg_replace('#^https?://#', '', $bookUrl), '#');
+        $pattern = '#href="(?:https?:)?//' . $bookAddress
+                 . '(chapter|front-matter|back-matter|part)/([^/"\#?]+)/?(?:\#[^"]*)?"#';
+        return preg_replace_callback(
+            $pattern,
+            function ($m) {
+                $id = $m[1] . '-' . $m[2];
+                // parts in exports without part pages have "-wrapper" on the end of their id
+                foreach ([$id, $id . '-wrapper'] as $candidate) {
+                    if (isset($this->parser->linkMap[$candidate])) {
+                        return 'href="#' . $candidate . '"';
+                    }
+                }
+                return $m[0];
+            },
+            $html
+        );
+    }
+
+    // Get a web page or API response as text, or null if it can't be fetched
+    private function fetchText(string $url): ?string
+    {
+        if (!$this->isPublicAddress($url)) {
+            return null;
+        }
+        return $this->httpGet($url, 5 * 1024 * 1024);
     }
 
     private function buildBackMatter(): void
@@ -479,19 +589,37 @@ class ZipBuilder
 
     private function downloadFile(string $url): ?string
     {
-        // SSRF guard: reject private/loopback/link-local addresses
         $host = parse_url($url, PHP_URL_HOST);
         if (!$host) {
             $this->imageFailures[] = $url;
             return null;
         }
-        $ip = gethostbyname($host);
-        if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+        if (!$this->isPublicAddress($url)) {
             $this->warnings[]      = "Skipped image from private/internal address: $host";
             $this->imageFailures[] = $url;
             return null;
         }
 
+        $data = $this->httpGet($url, 20 * 1024 * 1024); // 20 MB cap per image
+        if ($data === null) {
+            $this->imageFailures[] = $url;
+        }
+        return $data;
+    }
+
+    // SSRF guard: reject private/loopback/link-local addresses
+    private function isPublicAddress(string $url): bool
+    {
+        $host = parse_url($url, PHP_URL_HOST);
+        if (!$host) {
+            return false;
+        }
+        $ip = gethostbyname($host);
+        return (bool) filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+    }
+
+    private function httpGet(string $url, int $maxLength): ?string
+    {
         $opts = [
             'http' => [
                 'method'          => 'GET',
@@ -499,7 +627,7 @@ class ZipBuilder
                 'header'          => 'User-Agent: Mozilla/5.0 (compatible; PressbooksConverter/1.0; +https://pressbooks-converter.hibbittsdesign.org/)',
                 'timeout'         => 15,
                 'follow_location' => 1,
-                'max_length'      => 20 * 1024 * 1024, // 20 MB cap per image
+                'max_length'      => $maxLength,
             ],
             'ssl' => ['verify_peer' => true, 'verify_peer_name' => true],
         ];
@@ -518,7 +646,6 @@ class ZipBuilder
                 $this->warnings[]   = 'SSL certificate error — retrying without verification';
             }
         }
-        $this->imageFailures[] = $url;
         return null;
     }
 
@@ -668,6 +795,17 @@ class ZipBuilder
                 $tableWord = $count === 1 ? '1 table' : $count . ' tables';
                 $lines[] = '  - ' . $pageTitle . ' (' . $tableWord . ')';
             }
+        }
+
+        // Part intro pages the Pressbooks export left out (see fetchMissingPartIntros())
+        if ($this->partIntrosFetched) {
+            $lines[] = '';
+            $lines[] = 'Part Intros Not in the Export';
+            $lines[] = '-----------------------------';
+            $lines[] = '  The Pressbooks export left out the intro page of ' . $this->partIntrosFetched . ' part(s), so their';
+            $lines[] = '  text was taken from the book on Pressbooks (' . $p->bookUrl . ').';
+            $lines[] = '  Links to the book\'s own pages point to the converted pages; review each';
+            $lines[] = '  section\'s own page, as other content may differ from the export.';
         }
 
         $lines[] = '';
