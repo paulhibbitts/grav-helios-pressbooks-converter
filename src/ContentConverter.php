@@ -113,6 +113,15 @@ class ContentConverter
             $result
         );
 
+        // A blank line before each closing tag: shortcodes are applied after the Markdown becomes
+        // HTML, so a closing tag right under a list would join its last item, giving that item
+        // extra space (as an [exercise] box already does, the tag then stands on its own)
+        $result = preg_replace(
+            '/([^\n])\n(\[\/(?:announcement|objectives|example|reflection|key-takeaways|definition|case-study|exercise|project-brief|feedback-requested|process-note|references)\])/',
+            "$1\n\n$2",
+            $result
+        );
+
         // Remove leading space before opening shortcode tags (league whitespace artifact)
         $result = preg_replace(
             '/^ \[(announcement|objectives|example|reflection|key-takeaways|definition|case-study|exercise|project-brief|feedback-requested|process-note|references)(\b[^\]]*)\]/m',
