@@ -39,6 +39,11 @@ class ContentConverter
         // Remove empty inline code elements (produce stray `` in output)
         $html = preg_replace('/<code>\s*<\/code>/', '', $html);
 
+        // Keep just the text of bold or italic that holds only punctuation, such as the italic
+        // colon in <strong>Authors</strong><em>:</em>, which would become **Authors***:* and
+        // show its asterisks on the page
+        $html = preg_replace('/<(em|i|strong|b)\b[^>]*>([\s\p{P}]*)<\/\1>/u', '$2', $html);
+
         // A chapter's own level-1 headings would sit beside the page's title (also a level-1 heading,
         // shown by the theme), which breaks heading navigation for screen readers
         $html = $this->demoteHeadings($html);
