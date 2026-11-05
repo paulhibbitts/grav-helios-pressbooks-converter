@@ -1,0 +1,11 @@
+Sample Pressbooks exports used by tests/check.php. Each keeps its own licence (not the converter's).
+
+udl-for-idea.html
+  Universal Design for Learning (UDL) for Inclusion, Diversity, Equity, and Accessibility (IDEA) 2nd Edition
+  by Darla Benton Kearney, eCampus Ontario – CC BY 4.0
+  https://ecampusontario.pressbooks.pub/universaldesign2/
+
+principles-of-social-psychology.html
+  Principles of Social Psychology – 1st International H5P Edition
+  by Rajiv Jhangiani and Hammond Tarry, BCcampus – CC BY-NC-SA 4.0
+  https://opentextbc.ca/socialpsychology/

@@ -1,0 +1,11 @@
+---
+title: "4.4 Thinking Like a Social Psychologist about Attitudes, Behavior, and Persuasion"
+---
+
+Now that we have discussed the concept of attitudes more fully, we hope you can better understand how they fit into the bigger picture of social psychology. Attitudes are central because they provide an organizing principle that helps us understand when and how our beliefs, feelings, and behaviors work together. We hope you can now see some of the many ways that your attitudes toward people, social groups, products, and many other objects help you make sense of your environment and react quickly to it.
+
+Hopefully this chapter has also given you more insight into the many techniques that advertisers use to persuade people, and perhaps given you ideas about how to prevent that persuasion from occurring. You may now have a better understanding of the remarkable success of Apple’s iPhone as well as the techniques used in other advertising campaigns. Can you see how the features of the iPhone (e-mail and calendar management, social media integration, music storage, etc.) have had such an impact on consumers? Can you see that the iPhone’s marketing campaign messages created very strong attitudes on the part of technologically savvy consumers, which made them likely to act on these attitudes? Perhaps you might see how the processes of self-perception and cognitive dissonance were important in making and keeping the momentum of the iPhone sales. Perhaps, once people bought and started to use their iPhones their perceptions of their own behavior drove their attitudes to be even more positive.
+
+Think about some of the other ads that you have seen recently and consider the principles of persuasion that they used. Were the ads effective in matching the communicator, the message, and the message recipient?
+
+You may also want to consider the principles of self-perception and cognitive dissonance as you analyze your own behavior. Can you remember times when your behavior influenced your attitudes? Were the attitudes changed as a result of self-perception or cognitive dissonance? Do you remember feeling the negative emotions associated with dissonance? Perhaps you realize that the rationalizations that you make to relieve your dissonance might not always have such positive outcomes in the long term.

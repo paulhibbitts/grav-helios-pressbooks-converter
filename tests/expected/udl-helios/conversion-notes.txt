@@ -1,0 +1,57 @@
+Pressbooks Conversion Notes
+===========================
+Generated: DATE
+
+Book Metadata
+-------------
+  Title:   Universal Design for Learning (UDL) for Inclusion, Diversity, Equity, and Accessibility (IDEA) 2nd Edition
+  Authors: Darla Benton Kearney
+  License: CC BY 4.0
+  Source:  https://ecampusontario.pressbooks.pub/universaldesign2/
+
+Structure
+---------
+  Front matter:   6 page(s)
+  Parts/sections: 6
+  Chapters:       30 page(s)
+  Back matter:    0 page(s)
+  Total:          36 page(s)
+
+Next Steps
+----------
+  1. Copy the book folder from inside the extracted pages folder into
+     your Grav Helios Open Reader installation's user/pages/ directory
+  2. Review this file for any warnings or manual fixes needed
+
+Conversion Settings
+-------------------
+  Format:  Grav Helios Open Reader (shortcodes + full frontmatter)
+  Images:  kept as remote URLs — may break if source site goes offline
+  H5P:     linked to original source
+  YouTube: embedded via [youtube] shortcode
+
+Warnings
+--------
+  - SSL certificate error — retrying without verification
+  - the Pressbooks export has no intro pages for its parts, and they couldn't be fetched from https://ecampusontario.pressbooks.pub/universaldesign2/ (no response: Failed to open stream: no suitable wrapper could be found) – each section opens its first page instead
+
+Known Limitations
+-----------------
+  - Footnotes/endnotes may appear as raw HTML — review in Grav admin
+  - Complex tables may need manual cleanup
+  - Math/LaTeX rendering depends on your Grav MathJax plugin configuration
+  - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page
+
+Tables Not in the Export
+------------------------
+  These pages use a WordPress table plugin (TablePress), whose tables the
+  Pressbooks export leaves out, keeping only a shortcode such as [table id=5].
+  Copy each table from the book on Pressbooks into the page by hand:
+  - 3.3: OHRC and Accommodations (1 table)
+
+Media Support
+-------------
+  Grav Helios Open Reader supports embedded video, audio, and H5P activities,
+  but converted Pressbooks content may contain links to these items rather
+  than actual embeds. Review each page and replace links with the appropriate
+  shortcode where needed (e.g. [h5p url="..."] for H5P activities).

@@ -1,0 +1,144 @@
+Pressbooks Conversion Notes
+===========================
+Generated: DATE
+
+Book Metadata
+-------------
+  Title:   Principles of Social Psychology - 1st International H5P Edition
+  Menu:    Principles of Social Psychology (shorter label for the site's menu)
+  Authors: Dr. Rajiv Jhangiani and Dr. Hammond Tarry
+  License: CC BY-NC-SA 4.0
+  Source:  https://opentextbc.ca/socialpsychology/
+
+Structure
+---------
+  Front matter:   6 page(s)
+  Parts/sections: 12
+  Chapters:       62 page(s)
+  Back matter:    3 page(s)
+  Total:          71 page(s)
+
+Next Steps
+----------
+  1. Copy the book folder from inside the extracted pages folder into
+     your Grav Open Publishing Space site's user/pages/ directory
+  2. To change the book's menu label, edit menu: in the book's page
+     (in Admin: the book's page, Advanced tab, Menu)
+  3. Review this file for any warnings or manual fixes needed
+
+Conversion Settings
+-------------------
+  Format:  Grav Open Publishing Space (shortcodes + full frontmatter)
+  Images:  kept as remote URLs — may break if source site goes offline
+  H5P:     embedded via [h5p] shortcode (see H5P Embeds section below)
+  YouTube: embedded via [youtube] shortcode
+
+Known Limitations
+-----------------
+  - Footnotes/endnotes may appear as raw HTML — review in Grav admin
+  - Complex tables may need manual cleanup
+  - Math/LaTeX rendering depends on your Grav MathJax plugin configuration
+  - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page
+
+Media Support
+-------------
+  Grav Open Publishing Space supports embedded video, audio, and H5P activities,
+  but converted Pressbooks content may contain links to these items rather
+  than actual embeds. Review each page and replace links with the appropriate
+  shortcode where needed (e.g. [h5p url="..."] for H5P activities).
+
+H5P Embeds
+----------
+Open each embed URL in a browser to verify it shows the activity before installing.
+
+1.3 Conducting Research in Social Psychology
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=1
+  Source: https://opentextbc.ca/socialpsychology/?p=3142#h5p-1
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=2
+  Source: https://opentextbc.ca/socialpsychology/?p=3142#h5p-2
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=3
+  Source: https://opentextbc.ca/socialpsychology/?p=3142#h5p-3
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=4
+  Source: https://opentextbc.ca/socialpsychology/?p=3142#h5p-4
+
+1.4 Chapter Summary
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=5
+  Source: https://opentextbc.ca/socialpsychology/?p=3144#h5p-5
+
+2.2 How We Use Our Expectations
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=6
+  Source: https://opentextbc.ca/socialpsychology/?p=3166#h5p-6
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=7
+  Source: https://opentextbc.ca/socialpsychology/?p=3166#h5p-7
+
+2.4 Thinking Like a Social Psychologist about Social Cognition
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=8
+  Source: https://opentextbc.ca/socialpsychology/?p=3173#h5p-8
+
+2.5 Chapter Summary
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=9
+  Source: https://opentextbc.ca/socialpsychology/?p=3175#h5p-9
+
+3.2 The Feeling Self: Self-Esteem
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=10
+  Source: https://opentextbc.ca/socialpsychology/?p=3189#h5p-10
+
+3.3 The Social Self: The Role of the Social Situation
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=11
+  Source: https://opentextbc.ca/socialpsychology/?p=3195#h5p-11
+
+3.4 Thinking Like a Social Psychologist about the Self
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=12
+  Source: https://opentextbc.ca/socialpsychology/?p=3197#h5p-12
+
+3.5 Chapter Summary
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=13
+  Source: https://opentextbc.ca/socialpsychology/?p=3199#h5p-13
+
+5.2 Inferring Dispositions Using Causal Attribution
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=14
+  Source: https://opentextbc.ca/socialpsychology/?p=3235#h5p-14
+
+5.3 Biases in Attribution
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=15
+  Source: https://opentextbc.ca/socialpsychology/?p=3237#h5p-15
+
+5.5 Thinking Like a Social Psychologist about Person Perception
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=16
+  Source: https://opentextbc.ca/socialpsychology/?p=3242#h5p-16
+
+5.6 Chapter Summary
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=17
+  Source: https://opentextbc.ca/socialpsychology/?p=3244#h5p-17
+
+9.1 Defining Aggression
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=18
+  Source: https://opentextbc.ca/socialpsychology/?p=3314#h5p-18
+
+9.3 The Violence around Us: How the Social Situation Influences Aggression
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=19
+  Source: https://opentextbc.ca/socialpsychology/?p=3322#h5p-19
+
+9.5 Thinking Like a Social Psychologist about Aggression
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=20
+  Source: https://opentextbc.ca/socialpsychology/?p=3326#h5p-20
+
+9.6 Chapter Summary
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=21
+  Source: https://opentextbc.ca/socialpsychology/?p=3328#h5p-21
+
+12.2 How the Social Situation Creates Conflict: The Role of Social Dilemmas
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=22
+  Source: https://opentextbc.ca/socialpsychology/?p=3383#h5p-22
+
+12.3 Strategies for Producing Cooperation
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=23
+  Source: https://opentextbc.ca/socialpsychology/?p=3385#h5p-23
+
+12.4 Thinking Like a Social Psychologist about Cooperation and Competition
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=24
+  Source: https://opentextbc.ca/socialpsychology/?p=3387#h5p-24
+
+12.5 Chapter Summary
+  Embed:  https://opentextbc.ca/socialpsychology/wp-admin/admin-ajax.php?action=h5p_embed&id=25
+  Source: https://opentextbc.ca/socialpsychology/?p=3389#h5p-25
