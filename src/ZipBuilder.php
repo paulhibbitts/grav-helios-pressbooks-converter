@@ -174,7 +174,13 @@ class ZipBuilder
             }
             if ($coverFilename) {
                 $lines[] = 'cover_image: ' . $coverFilename;
-                $lines[] = 'cover_image_layout: sidebar';
+                // Helios Open Reader shows the cover in its sidebar; Open Publishing Space (which keeps the
+                // book's folder in its addresses) shows a small cover beside the book's details
+                $coverLayout = 'sidebar';
+                if ($this->bookRoute !== '') {
+                    $coverLayout = 'small';
+                }
+                $lines[] = 'cover_image_layout: ' . $coverLayout;
             }
             if ($authorsStr) {
                 $lines[] = 'authors: ' . Helpers::yamlStr($authorsStr);

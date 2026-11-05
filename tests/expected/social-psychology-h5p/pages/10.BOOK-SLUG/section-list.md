@@ -2,7 +2,7 @@
 title: "Principles of Social Psychology - 1st International H5P Edition"
 menu: "Principles of Social Psychology"
 cover_image: principles-of-social-psychology-cover.jpg
-cover_image_layout: sidebar
+cover_image_layout: small
 authors: "Dr. Rajiv Jhangiani and Dr. Hammond Tarry"
 show_oer_attribution: true
 license: "CC BY-NC-SA 4.0"

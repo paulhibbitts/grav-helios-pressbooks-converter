@@ -2,7 +2,7 @@
 title: "Universal Design for Learning (UDL) for Inclusion, Diversity, Equity, and Accessibility (IDEA) 2nd Edition"
 menu: "Universal Design for Learning (UDL)"
 cover_image: udl-for-idea-cover.png
-cover_image_layout: sidebar
+cover_image_layout: small
 authors: "Darla Benton Kearney"
 show_oer_attribution: true
 license: "CC BY 4.0"
