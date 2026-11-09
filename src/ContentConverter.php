@@ -167,6 +167,8 @@ class ContentConverter
 
         // Replace footnote placeholders with Markdown Extra syntax
         $result = preg_replace('/%%FN(\d+)%%/', '[^$1]', $result);
+        // "[/term](s)" would be read as a Markdown link (brackets with no spaces inside), so its "(" is escaped
+        $result = preg_replace('/(%%TERM\d+%%)\((?=[^\s()]*\))/', '$1\\(', $result);
         $result = strtr($result, $this->termPlaceholders);
         if ($fnDefs) {
             $result = rtrim($result) . "\n\n" . $fnDefs;
@@ -920,27 +922,36 @@ class ContentConverter
         }
         // other ways the text may write a term ("Temperature (of light)" → "temperature"), unless that's another term
         foreach ($terms as $term) {
-            foreach (self::looserForms(self::termKey($term), true) as $form) {
+            $forms = self::looserForms(self::termKey($term));
+            foreach (self::otherNames($term) as $name) {
+                $forms = array_merge($forms, [self::termKey($name)], self::looserForms(self::termKey($name)));
+            }
+            foreach ($forms as $form) {
                 $this->glossaryKeys += [$form => $term];
             }
         }
     }
 
-    // A term key without its bracketed part ("vector (image)" → "vector"), split into its names when it has two
-    // ("cmy or cmyk" → "cmy", "cmyk"; Glossary terms only), and each with hyphens as spaces ("make-ready" → "make ready")
-    private static function looserForms(string $key, bool $splitNames): array
+    // A term key without its bracketed part ("vector (image)" → "vector"), and both with hyphens as spaces
+    // ("make-ready" → "make ready")
+    private static function looserForms(string $key): array
     {
-        $forms = [preg_replace('/\s*\([^)]*\)\s*/u', ' ', $key)]; // "device dependent (colour)" → "device dependent"
-        if ($splitNames) {
-            foreach ($forms as $form) {
-                $forms = array_merge($forms, explode(' or ', $form));
-            }
-        }
-        foreach ($forms as $form) {
-            $forms[] = str_replace('-', ' ', $form);
-        }
+        $withoutBrackets = preg_replace('/\s*\([^)]*\)\s*/u', ' ', $key); // "device dependent (colour)" → "device dependent"
+        $forms = [$withoutBrackets, str_replace('-', ' ', $key), str_replace('-', ' ', $withoutBrackets)];
 
         return array_values(array_diff(array_unique(array_map(fn($form) => self::normalizeText($form), $forms)), ['', $key]));
+    }
+
+    // The names of a term written as two ("CMY or CMYK", "QR code or Quick Response Code"), keeping abbreviations and
+    // names of more than one word: in "Actor-observer bias or difference", "difference" on its own isn't the term
+    private static function otherNames(string $term): array
+    {
+        $names = explode(' or ', self::normalizeText(preg_replace('/\s*\([^)]*\)\s*/u', ' ', $term)));
+        if (count($names) < 2) {
+            return [];
+        }
+
+        return array_filter($names, fn($name) => str_contains($name, ' ') || preg_match('/^[A-Z0-9]+$/', $name));
     }
 
     // Collapses spaces (including no-break spaces) and trims: used for glossary terms in the text and in the Glossary
@@ -1031,11 +1042,9 @@ class ContentConverter
             return null;
         }
 
-        $key   = self::termKey($words);
-        $bases = [$key, preg_replace('/^the /u', '', $key)];
-        foreach ($bases as $base) {
-            $bases = array_merge($bases, self::looserForms($base, false));
-        }
+        $key         = self::termKey($words);
+        $withoutThe  = preg_replace('/^the /u', '', $key);
+        $bases       = array_merge([$key, $withoutThe], self::looserForms($key), self::looserForms($withoutThe));
         foreach (array_unique($bases) as $base) {
             $variants = [
                 $base,

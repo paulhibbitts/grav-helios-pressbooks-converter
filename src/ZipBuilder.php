@@ -557,8 +557,8 @@ class ZipBuilder
 
     // Terms and definitions from a glossary page: paragraphs that start with the term in bold
     // (<p><strong>Term</strong> Definition</p>), a definition list (<dl>), or a heading with the term and its
-    // definition in the next paragraph. A line (<hr>) or a References heading after the terms ends them: the
-    // text after it is shown below the glossary's list.
+    // definition in the next paragraph. A References heading after the terms (or a line (<hr>) just before one)
+    // ends them: the text from there is shown below the glossary's list.
     // Returns [entries ([term, definition HTML]), the page's other HTML].
     private function glossaryEntries(string $html): array
     {
@@ -567,14 +567,16 @@ class ZipBuilder
         $dom->loadHTML('<html><head><meta charset="UTF-8"></head><body>' . $html . '</body></html>');
         libxml_clear_errors();
 
-        $nodes = [];
+        $nodes     = []; // the page's elements, as read for entries
+        $originals = []; // the same elements as they are on the page, for the text that isn't an entry
         foreach (iterator_to_array($this->pageContent($dom)->childNodes) as $node) {
             if (!$node instanceof \DOMElement) {
                 continue;
             }
             // a heading or paragraph on its own in a <div> is read as if the <div> weren't there
             $only = $node->nodeName === 'div' ? $this->onlyChildElement($node) : null;
-            $nodes[] = $only && preg_match('/^(p|h[1-6])$/', $only->nodeName) ? $only : $node;
+            $nodes[]     = $only && preg_match('/^(p|h[1-6])$/', $only->nodeName) ? $only : $node;
+            $originals[] = $node;
         }
 
         $entries  = [];
@@ -586,17 +588,22 @@ class ZipBuilder
                 continue;
             }
             $isHeading = preg_match('/^h[1-6]$/', $node->nodeName) === 1;
-            if ($entries && ($node->nodeName === 'hr'
-                || ($isHeading && preg_match('/^(references|sources|bibliography)$/i', ContentConverter::normalizeText($node->textContent))))) {
+            $next      = $nodes[$i + 1] ?? null;
+            if ($entries && ($this->isReferencesHeading($node) || ($node->nodeName === 'hr' && $next && $this->isReferencesHeading($next)))) {
                 // the glossary's list goes here, before the rest of the page
                 $other .= '<p>[glossary]</p>';
-                foreach (array_slice($nodes, $i) as $rest) {
+                foreach (array_slice($originals, $i) as $rest) {
                     $other .= $dom->saveHTML($rest);
                 }
                 break;
             }
-            $next = $nodes[$i + 1] ?? null;
-            if ($isHeading && $next && $next->nodeName === 'p' && !$this->paragraphEntry($next)) {
+            // a line between terms only separates them, and the glossary's list replaces them
+            if ($entries && $node->nodeName === 'hr') {
+                continue;
+            }
+            // a heading about the glossary itself ("How to use this glossary") isn't a term
+            if ($isHeading && $next && $next->nodeName === 'p' && !$this->paragraphEntry($next)
+                && stripos($node->textContent, 'glossary') === false) {
                 $term       = $this->boldText($node);
                 $definition = ContentConverter::normalizeText($next->textContent);
                 if ($term !== '' && $definition !== '' && mb_strlen($term) > 2) {
@@ -618,10 +625,17 @@ class ZipBuilder
             if (preg_match('/^h[1-6]$/', $node->nodeName) && mb_strlen(trim($node->textContent)) <= 2) {
                 continue;
             }
-            $other .= $dom->saveHTML($node);
+            $other .= $dom->saveHTML($originals[$i]);
         }
 
         return [$entries, $other];
+    }
+
+    // a References, Sources or Bibliography heading
+    private function isReferencesHeading(\DOMElement $node): bool
+    {
+        return preg_match('/^h[1-6]$/', $node->nodeName)
+            && preg_match('/^(references|sources|bibliography)$/i', ContentConverter::normalizeText($node->textContent));
     }
 
     // the element holding the page's content: <body>, or a single plain wrapper inside it (<div>, <section>…)
