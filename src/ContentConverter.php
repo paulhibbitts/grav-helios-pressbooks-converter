@@ -918,6 +918,29 @@ class ContentConverter
         foreach ($terms as $term) {
             $this->glossaryKeys[self::termKey($term)] = $term;
         }
+        // other ways the text may write a term ("Temperature (of light)" → "temperature"), unless that's another term
+        foreach ($terms as $term) {
+            foreach (self::looserForms(self::termKey($term), true) as $form) {
+                $this->glossaryKeys += [$form => $term];
+            }
+        }
+    }
+
+    // A term key without its bracketed part ("vector (image)" → "vector"), split into its names when it has two
+    // ("cmy or cmyk" → "cmy", "cmyk"; Glossary terms only), and each with hyphens as spaces ("make-ready" → "make ready")
+    private static function looserForms(string $key, bool $splitNames): array
+    {
+        $forms = [preg_replace('/\s*\([^)]*\)\s*/u', ' ', $key)]; // "device dependent (colour)" → "device dependent"
+        if ($splitNames) {
+            foreach ($forms as $form) {
+                $forms = array_merge($forms, explode(' or ', $form));
+            }
+        }
+        foreach ($forms as $form) {
+            $forms[] = str_replace('-', ' ', $form);
+        }
+
+        return array_values(array_diff(array_unique(array_map(fn($form) => self::normalizeText($form), $forms)), ['', $key]));
     }
 
     // Collapses spaces (including no-break spaces) and trims: used for glossary terms in the text and in the Glossary
@@ -1000,15 +1023,20 @@ class ContentConverter
     }
 
     // The Glossary term that words in the text stand for, or null: the same words, or the same without a leading
-    // "The", or the singular or plural (schemas → Schema, attitude → Attitudes)
+    // "The", a bracketed part or hyphens, or the singular or plural (schemas → Schema, attitude → Attitudes)
     private function glossaryMatch(string $words): ?string
     {
-        if ($words === '' || strpbrk($words, '[]"') !== false) {
-            return null; // would break the shortcode
+        // brackets or quotes would break the shortcode, and [term](…) at the start would be read as a Markdown link
+        if ($words === '' || strpbrk($words, '[]"') !== false || $words[0] === '(') {
+            return null;
         }
 
-        $key = self::termKey($words);
-        foreach (array_unique([$key, preg_replace('/^the /u', '', $key)]) as $base) {
+        $key   = self::termKey($words);
+        $bases = [$key, preg_replace('/^the /u', '', $key)];
+        foreach ($bases as $base) {
+            $bases = array_merge($bases, self::looserForms($base, false));
+        }
+        foreach (array_unique($bases) as $base) {
             $variants = [
                 $base,
                 $base . 's',                         // attitude → attitudes

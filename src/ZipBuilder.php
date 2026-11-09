@@ -668,6 +668,7 @@ class ZipBuilder
         while (($otherName = $this->takeOtherName($copy)) !== null) {
             $term .= $otherName;
         }
+        $term = preg_replace(['/\(\s+/u', '/\s+\)/u'], ['(', ')'], $term); // "Personal ( or internal)" → "Personal (or internal)"
 
         $definitionText = self::trimPunctuation(ContentConverter::normalizeText($copy->textContent), 'start');
         if ($term === '' || $definitionText === '') {

@@ -36,14 +36,19 @@ Conversion Settings
 Glossary and Captions
 ---------------------
   Glossary: 322 terms, in the Glossary section (section 15), listed in alphabetical order
-  Glossary terms in the text: 320 show their definition when hovered over or tapped
+  Glossary terms in the text: 327 show their definition when hovered over or tapped
   These were linked to a similar Glossary term (such as a plural): check they mean the same:
     - schemas → Schema
+    - self-concept → Self concept
     - self-schemas → Self-schema
     - The principle of attitude consistency → Principle of attitude consistency
     - Recency effects → Recency effect
+    - situational (or external) attribution → Situational attribution
+    - proximity liking → Proximity-liking
     - just world beliefs → Just world belief
+    - compensatory (averaging) task → Compensatory (or averaging) task
     - mindguards → Mindguard
+    - Implicit Association Test (IAT) → Implicit Association Test
     - fixed-sum outcomes → Fixed-sum outcome
     - integrative outcomes → Integrative outcome
     - Social dilemmas → Social dilemma
@@ -52,14 +57,10 @@ Glossary and Captions
     - social situation
     - attitude (2 times)
     - overconfidence bias
-    - self-concept
     - Message strength
     - Source expertise
     - Personal relevance
-    - personal (or internal or dispositional) attribution
-    - situational (or external) attribution
     - group-serving bias, sometimes referred to as the ultimate attribution error
-    - proximity liking
     - triangular model of love
     - Be prepared for squabbles
     - Don’t be negative
@@ -67,9 +68,6 @@ Glossary and Captions
     - Do things that please your partner
     - Have fun
     - dependency oriented
-    - compensatory (averaging) task
-    - Implicit Association Test (IAT)
-    - group-serving bias (or ultimate attribution error)
   Table captions: 29 (as "Table: …" lines, which become the tables' captions)
   Figure captions: 141, 140 already numbered in the book (such as "Figure 3.2")
 
