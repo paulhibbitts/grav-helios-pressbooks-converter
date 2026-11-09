@@ -1,0 +1,89 @@
+Pressbooks Conversion Notes
+===========================
+Generated: DATE
+
+Book Metadata
+-------------
+  Title:   Principles of Social Psychology - 1st International H5P Edition
+  Authors: Dr. Rajiv Jhangiani and Dr. Hammond Tarry
+  License: CC BY-NC-SA 4.0
+  Source:  https://opentextbc.ca/socialpsychology/
+
+Structure
+---------
+  Front matter:   6 page(s)
+  Parts/sections: 12
+  Chapters:       62 page(s)
+  Back matter:    3 page(s)
+  Total:          71 page(s)
+
+Next Steps
+----------
+  1. Copy the book folder from inside the extracted pages folder into
+     your Grav Helios Open Reader installation's user/pages/ directory
+  2. Review this file for any warnings or manual fixes needed
+
+Conversion Settings
+-------------------
+  Format:  Grav Helios Open Reader (shortcodes + full frontmatter)
+  Images:  kept as remote URLs — may break if source site goes offline
+  H5P:     linked to original source
+  YouTube: embedded via [youtube] shortcode
+
+Warnings
+--------
+  - SSL certificate error — retrying without verification
+
+Glossary and Captions
+---------------------
+  Glossary: 322 terms, in the Glossary section (section 15), listed in alphabetical order
+  Glossary terms in the text: 320 show their definition when hovered over or tapped
+  These were linked to a similar Glossary term (such as a plural): check they mean the same:
+    - schemas → Schema
+    - self-schemas → Self-schema
+    - The principle of attitude consistency → Principle of attitude consistency
+    - Recency effects → Recency effect
+    - just world beliefs → Just world belief
+    - mindguards → Mindguard
+    - fixed-sum outcomes → Fixed-sum outcome
+    - integrative outcomes → Integrative outcome
+    - Social dilemmas → Social dilemma
+  These terms marked in the book aren't in its Glossary, so they are plain text (add them
+  to the Glossary, or wrap them in [term name="Glossary term"]…[/term]):
+    - social situation
+    - attitude (2 times)
+    - overconfidence bias
+    - self-concept
+    - Message strength
+    - Source expertise
+    - Personal relevance
+    - personal (or internal or dispositional) attribution
+    - situational (or external) attribution
+    - group-serving bias, sometimes referred to as the ultimate attribution error
+    - proximity liking
+    - triangular model of love
+    - Be prepared for squabbles
+    - Don’t be negative
+    - Be fair in how you evaluate behaviors
+    - Do things that please your partner
+    - Have fun
+    - dependency oriented
+    - compensatory (averaging) task
+    - Implicit Association Test (IAT)
+    - group-serving bias (or ultimate attribution error)
+  Table captions: 29 (as "Table: …" lines, which become the tables' captions)
+  Figure captions: 141, 140 already numbered in the book (such as "Figure 3.2")
+
+Known Limitations
+-----------------
+  - Footnotes/endnotes may appear as raw HTML — review in Grav admin
+  - Complex tables may need manual cleanup
+  - Math/LaTeX rendering depends on your Grav MathJax plugin configuration
+  - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page
+
+Media Support
+-------------
+  Grav Helios Open Reader supports embedded video, audio, and H5P activities,
+  but converted Pressbooks content may contain links to these items rather
+  than actual embeds. Review each page and replace links with the appropriate
+  shortcode where needed (e.g. [h5p url="..."] for H5P activities).

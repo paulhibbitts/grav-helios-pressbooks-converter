@@ -1,0 +1,47 @@
+Pressbooks Conversion Notes
+===========================
+Generated: DATE
+
+Book Metadata
+-------------
+  Title:   Edge Cases Sample
+  Authors: Sample Author
+  License: CC BY 4.0
+
+Structure
+---------
+  Front matter:   1 page(s)
+  Parts/sections: 1
+  Chapters:       1 page(s)
+  Back matter:    2 page(s)
+  Total:          4 page(s)
+
+Next Steps
+----------
+  1. Copy the book folder from inside the extracted pages folder into
+     any Grav site's user/pages/ directory (no Helios plugin required),
+     or adapt it for another Markdown-based platform
+  2. Review this file for any warnings or manual fixes needed
+
+Conversion Settings
+-------------------
+  Format:  Standard Markdown (no Grav-specific shortcodes)
+  Images:  kept as remote URLs — may break if source site goes offline
+  H5P:     linked to original source
+  YouTube: embedded via a plain <iframe> (YouTube's own embed code)
+
+Known Limitations
+-----------------
+  - Footnotes/endnotes may appear as raw HTML — review in Grav admin
+  - Complex tables may need manual cleanup
+  - Math/LaTeX rendering depends on your Grav MathJax plugin configuration
+  - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page
+  - Internal cross-reference links use Grav-style absolute paths (e.g. /section-2/some-page)
+    and will not resolve outside a Grav site — check/update these manually if publishing
+    to another platform
+
+Media Support
+-------------
+  YouTube videos are embedded as real <iframe> elements (YouTube's own embed
+  code). H5P activities are embedded the same way when "Embed H5P activities"
+  is enabled; otherwise they are left as links to the original source.

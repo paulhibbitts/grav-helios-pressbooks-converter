@@ -14,6 +14,19 @@ class ContentConverter
     public  array        $warnings  = [];
     public  array        $h5pEmbeds = [];
 
+    // Counted across the whole book, for the conversion notes
+    public  int          $tableCaptions          = 0; // tables whose caption became a line above them
+    public  int          $figureCaptions         = 0; // captioned images
+    public  int          $numberedFigureCaptions = 0; // ... whose caption already starts with "Figure 3.2"
+    public  int          $glossaryTermsLinked    = 0; // glossary terms in the text that became [term]
+    public  array        $unmatchedGlossaryTerms = []; // glossary terms not in the Glossary: text => times
+    public  array        $similarGlossaryTerms   = []; // linked to a similar Glossary term: text => term
+    public  int          $glossaryTermsLeftPlain = 0;  // inside a link, heading or textbox title, so left as text
+
+    private array        $glossaryKeys     = []; // termKey() => the Glossary's term
+    private array        $termPlaceholders = []; // %%TERMn%% => [term]…[/term], for the page being converted
+    private int          $termCount        = 0;
+
     public function __construct(array $linkMap, bool $figureHtml = true, bool $embedH5p = false, bool $portableMarkdown = false)
     {
         $this->linkMap          = $linkMap;
@@ -35,6 +48,7 @@ class ContentConverter
         $this->h5pEmbeds = [];
         // Strip Pressbooks decorative indicator icons (new-tab, download) — small <img> inside <a>
         $html = $this->stripLinkIcons($html);
+        $html = $this->markGlossaryTerms($html);
 
         // Remove empty inline code elements (produce stray `` in output)
         $html = preg_replace('/<code>\s*<\/code>/', '', $html);
@@ -51,6 +65,7 @@ class ContentConverter
         [$html, $fnDefs]   = $this->extractFootnotes($html);
         $html               = $this->fixVideos($html);
         $html               = $this->fixDefinitionLists($html);
+        $html               = $this->fixTableCaptions($html);
         $html               = $this->rewriteLinks($html);
         [$html, $figures]   = $this->fixFigures($html);
         [$html, $callouts]  = $this->fixCallouts($html);
@@ -152,6 +167,7 @@ class ContentConverter
 
         // Replace footnote placeholders with Markdown Extra syntax
         $result = preg_replace('/%%FN(\d+)%%/', '[^$1]', $result);
+        $result = strtr($result, $this->termPlaceholders);
         if ($fnDefs) {
             $result = rtrim($result) . "\n\n" . $fnDefs;
         }
@@ -374,6 +390,7 @@ class ContentConverter
 
         // HTML mode: replace with a placeholder; league never sees the <figure>
         $makeHtmlFig = function (\DOMElement $imgEl, ?\DOMNode $captionEl) use (&$figs, &$count, $dom): string {
+            $this->countFigureCaption($captionEl);
             $count++;
             $ph  = "%%FIG{$count}%%";
             $src = htmlspecialchars($imgEl->getAttribute('src'), ENT_QUOTES);
@@ -393,6 +410,7 @@ class ContentConverter
 
         // Markdown mode: image via league, caption as *text* via <em> for league to convert
         $makeMdFig = function (\DOMElement $imgEl, ?\DOMNode $captionEl, \DOMNode $parent) use ($dom): void {
+            $this->countFigureCaption($captionEl);
             $frag    = $dom->createDocumentFragment();
             $imgPara = $dom->createElement('p');
             $imgClone = $imgEl->cloneNode(true);
@@ -847,6 +865,177 @@ class ContentConverter
         }
 
         return $this->bodyHtml($body);
+    }
+
+    // A table's caption becomes a "Table: …" line just above the table (a Pandoc/Quarto table caption, which Open
+    // Publishing Space and Helios Open Reader show as the table's caption; a plain line in portable Markdown).
+    // Left in the table, it would come out on the line right above the table and run into it.
+    private function fixTableCaptions(string $html): string
+    {
+        if (stripos($html, '<caption') === false && stripos($html, '<figcaption') === false) {
+            return $html;
+        }
+        $dom   = $this->loadFragment($html);
+        $xpath = new \DOMXPath($dom);
+        $body  = $dom->getElementsByTagName('body')->item(0);
+
+        // <table><caption>, or the block editor's <figure class="wp-block-table"><table>…</table><figcaption>
+        $captions = $xpath->query('//table/caption | //figure[.//table and not(.//img)]/figcaption');
+        foreach (iterator_to_array($captions) as $caption) {
+            $this->captionToLine($dom, $caption);
+        }
+
+        return $this->bodyHtml($body);
+    }
+
+    // moves a caption out of its table (or figure) into a paragraph just above it
+    private function captionToLine(\DOMDocument $dom, \DOMElement $caption): void
+    {
+        $holder = $caption->parentNode; // the table, or the figure around it
+        $holder->removeChild($caption);
+        if (trim($caption->textContent) === '') {
+            return;
+        }
+        // Pressbooks captions often start with a space
+        if ($caption->firstChild->nodeType === XML_TEXT_NODE) {
+            $caption->firstChild->nodeValue = ltrim($caption->firstChild->nodeValue);
+        }
+
+        $line = $dom->createElement('p');
+        if (!$this->portableMarkdown) {
+            $line->appendChild($dom->createTextNode('Table: '));
+        }
+        while ($caption->firstChild) {
+            $line->appendChild($caption->firstChild);
+        }
+        $holder->parentNode->insertBefore($line, $holder);
+        $this->tableCaptions++;
+    }
+
+    // The book's Glossary terms (Grav destinations), so glossary terms in the text can be linked to them
+    public function setGlossaryTerms(array $terms): void
+    {
+        foreach ($terms as $term) {
+            $this->glossaryKeys[self::termKey($term)] = $term;
+        }
+    }
+
+    // Collapses spaces (including no-break spaces) and trims: used for glossary terms in the text and in the Glossary
+    public static function normalizeText(string $text): string
+    {
+        return trim(preg_replace('/\s+/u', ' ', str_replace("\xc2\xa0", ' ', $text)));
+    }
+
+    // "Social  Psychology " -> "social psychology", for matching a term in the text with the Glossary's
+    public static function termKey(string $term): string
+    {
+        return mb_strtolower(self::normalizeText($term));
+    }
+
+    // Pressbooks marks glossary terms in the text with <span class="glossary-term">. A term that's in the book's
+    // Glossary becomes [term]…[/term]; any other is left as plain text and listed in the conversion notes.
+    private function markGlossaryTerms(string $html): string
+    {
+        $this->termPlaceholders = [];
+        if ($this->portableMarkdown || !$this->glossaryKeys || strpos($html, 'glossary-term') === false) {
+            return $html;
+        }
+        $dom   = $this->loadFragment($html);
+        $xpath = new \DOMXPath($dom);
+        $body  = $dom->getElementsByTagName('body')->item(0);
+
+        // a [term] would break a link's text or a callout's title (from a heading, textbox header or bold text)
+        $insideLinkOrTitle = 'ancestor::a | ancestor::h1 | ancestor::h2 | ancestor::h3 | ancestor::h4 | ancestor::h5 | ancestor::h6'
+            . " | ancestor::*[{$this->xc('textbox__header')}]"
+            . " | ancestor::strong[ancestor::*[{$this->xc('textbox')}]] | ancestor::b[ancestor::*[{$this->xc('textbox')}]]";
+
+        foreach (iterator_to_array($xpath->query("//*[{$this->xc('glossary-term')}]")) as $element) {
+            if ($xpath->query($insideLinkOrTitle, $element)->length) {
+                $this->glossaryTermsLeftPlain++;
+                $this->unwrap($element);
+                continue;
+            }
+
+            // "falsifiable," -> "falsifiable" and "," (the punctuation goes after the term)
+            preg_match('/^(.*?)([\s.,;:!?]*)$/su', self::normalizeText($element->textContent), $parts);
+            [, $words, $punctuation] = $parts;
+
+            $term = $this->glossaryMatch($words);
+            if ($term === null) {
+                if ($words !== '') {
+                    $this->unmatchedGlossaryTerms[$words] = ($this->unmatchedGlossaryTerms[$words] ?? 0) + 1;
+                }
+                $this->unwrap($element);
+                continue;
+            }
+
+            // a placeholder for now, so the Markdown converter doesn't escape the shortcode's brackets
+            $placeholder = '%%TERM' . (++$this->termCount) . '%%';
+            $this->termPlaceholders[$placeholder] = $this->termShortcode($words, $term) . $punctuation;
+            $element->parentNode->replaceChild($dom->createTextNode($placeholder), $element);
+            $this->glossaryTermsLinked++;
+        }
+
+        return $this->bodyHtml($body);
+    }
+
+    // [term]schema[/term], or [term name="Schema"]schemas[/term] when the words differ from the Glossary's term
+    private function termShortcode(string $words, string $term): string
+    {
+        if (self::termKey($words) === self::termKey($term)) {
+            return '[term]' . $words . '[/term]';
+        }
+        $this->similarGlossaryTerms[$words] = $term;
+
+        return '[term name="' . $term . '"]' . $words . '[/term]';
+    }
+
+    // replaces an element with its contents
+    private function unwrap(\DOMElement $element): void
+    {
+        while ($element->firstChild) {
+            $element->parentNode->insertBefore($element->firstChild, $element);
+        }
+        $element->parentNode->removeChild($element);
+    }
+
+    // The Glossary term that words in the text stand for, or null: the same words, or the same without a leading
+    // "The", or the singular or plural (schemas → Schema, attitude → Attitudes)
+    private function glossaryMatch(string $words): ?string
+    {
+        if ($words === '' || strpbrk($words, '[]"') !== false) {
+            return null; // would break the shortcode
+        }
+
+        $key = self::termKey($words);
+        foreach (array_unique([$key, preg_replace('/^the /u', '', $key)]) as $base) {
+            $variants = [
+                $base,
+                $base . 's',                         // attitude → attitudes
+                $base . 'es',                        // process → processes
+                preg_replace('/ies$/u', 'y', $base),   // theories → theory
+                preg_replace('/es$/u', '', $base),     // processes → process
+                preg_replace('/s$/u', '', $base),      // schemas → schema
+            ];
+            foreach ($variants as $variant) {
+                if (isset($this->glossaryKeys[$variant])) {
+                    return $this->glossaryKeys[$variant];
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private function countFigureCaption(?\DOMNode $captionEl): void
+    {
+        if (!$captionEl || trim($captionEl->textContent) === '') {
+            return;
+        }
+        $this->figureCaptions++;
+        if (preg_match('/^\s*(figure|fig\.?)\s*\d/i', $captionEl->textContent)) {
+            $this->numberedFigureCaptions++;
+        }
     }
 
     // ── DOM helpers ───────────────────────────────────────────────────────────

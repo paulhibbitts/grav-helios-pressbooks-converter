@@ -13,7 +13,8 @@ For more information about the accessibility of this textbook, see the Accessibi
 
 You can access the online webbook and download any of the formats for free here: *[Principles of Social Psychology – 1st International H5P Edition](https://opentextbc.ca/socialpsychology/)*. To download the book in a different format, look for the “Download this book” drop-down menu and select the file type you want.
 
- How can I use the different formats?
+Table: How can I use the different formats?
+
 | Format | Internet required? | Device | Required apps | Accessibility Features | Screen reader compatible |
 |---|---|---|---|---|---|
 | Online webbook | Yes | Computer, tablet, phone | An Internet browser (Chrome, Firefox, Edge, or Safari) | WCAG 2.0 AA compliant, option to enlarge text, and compatible with browser text-to-speech tools | Yes |

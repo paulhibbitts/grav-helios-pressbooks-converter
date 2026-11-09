@@ -33,6 +33,12 @@ $checks = [
     'udl-helios' => ['book' => 'udl-for-idea.html', 'destination' => 'helios', 'embedH5p' => false, 'portable' => false],
     'udl-standard-markdown' => ['book' => 'udl-for-idea.html', 'destination' => 'open-publishing', 'embedH5p' => false, 'portable' => true],
     'social-psychology-h5p' => ['book' => 'principles-of-social-psychology.html', 'cover' => 'principles-of-social-psychology-cover.jpg', 'destination' => 'open-publishing', 'embedH5p' => true, 'portable' => false],
+    // the Glossary section in Helios Open Reader's layout (folders and section labels)
+    'social-psychology-helios' => ['book' => 'principles-of-social-psychology.html', 'destination' => 'helios', 'embedH5p' => false, 'portable' => false],
+    // a small made-up book with the glossary and caption cases the real books don't have
+    'edge-cases' => ['book' => 'edge-cases.html', 'destination' => 'open-publishing', 'embedH5p' => false, 'portable' => false],
+    // the same book as Standard Markdown: terms stay plain text and the Glossary stays a page
+    'edge-cases-standard-markdown' => ['book' => 'edge-cases.html', 'destination' => 'open-publishing', 'embedH5p' => false, 'portable' => true],
 ];
 
 $update = in_array('--update', $argv, true);

@@ -13,7 +13,8 @@ The web version of *[Principles of Social Psychology – 1st International H5P E
 - **Accessible images**. All images in this resource that convey information have alternative text. Images that are decorative have empty alternative text.
 - **Accessible links**. All links use descriptive link text.
 
- Accessibility Checklist
+Table: Accessibility Checklist
+
 | Element | Requirements | Pass? |
 |---|---|---|
 | Headings | Content is organized under headings and subheadings that are used sequentially. | Yes |

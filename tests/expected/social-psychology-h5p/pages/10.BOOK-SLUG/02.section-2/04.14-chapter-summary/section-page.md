@@ -66,7 +66,8 @@ Now that you’ve reviewed the chapter, try this multiple-choice quiz to see wha
 
 Is social psychology just common sense? Answers and explanations
 
-Table 1.5 Is social psychology just common sense? Answers and explanations
+Table: Table 1.5 Is social psychology just common sense? Answers and explanations
+
 | Statement | Answer and Explanation |
 |---|---|
 | Opposites attract. | False.The opposite is more the case. Similarity, particularly in values and beliefs, is an important determinant of liking. |

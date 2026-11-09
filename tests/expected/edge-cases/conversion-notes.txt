@@ -1,0 +1,57 @@
+Pressbooks Conversion Notes
+===========================
+Generated: DATE
+
+Book Metadata
+-------------
+  Title:   Edge Cases Sample
+  Authors: Sample Author
+  License: CC BY 4.0
+
+Structure
+---------
+  Front matter:   1 page(s)
+  Parts/sections: 1
+  Chapters:       1 page(s)
+  Back matter:    2 page(s)
+  Total:          4 page(s)
+
+Next Steps
+----------
+  1. Copy the book folder from inside the extracted pages folder into
+     your Grav Open Publishing Space site's user/pages/ directory
+  2. Review this file for any warnings or manual fixes needed
+
+Conversion Settings
+-------------------
+  Format:  Grav Open Publishing Space (shortcodes + full frontmatter)
+  Images:  kept as remote URLs — may break if source site goes offline
+  H5P:     linked to original source
+  YouTube: embedded via [youtube] shortcode
+
+Warnings
+--------
+  - a Glossary page ("Glossary Overview") was found, but no terms could be read from it, so it's kept as a back matter page
+
+Glossary and Captions
+---------------------
+  Glossary: 3 terms, in the Glossary section (section 4), listed in alphabetical order
+  Glossary terms in the text: 4 show their definition when hovered over or tapped
+  These were linked to a similar Glossary term (such as a plural): check they mean the same:
+    - schemas → Schema
+  4 glossary term(s) inside a link, heading or textbox title were left as plain text
+  Table captions: 1 (as "Table: …" lines, which become the tables' captions)
+
+Known Limitations
+-----------------
+  - Footnotes/endnotes may appear as raw HTML — review in Grav admin
+  - Complex tables may need manual cleanup
+  - Math/LaTeX rendering depends on your Grav MathJax plugin configuration
+  - Other oEmbed content (Vimeo, Google Slides, etc.) links to the original Pressbooks page
+
+Media Support
+-------------
+  Grav Open Publishing Space supports embedded video, audio, and H5P activities,
+  but converted Pressbooks content may contain links to these items rather
+  than actual embeds. Review each page and replace links with the appropriate
+  shortcode where needed (e.g. [h5p url="..."] for H5P activities).

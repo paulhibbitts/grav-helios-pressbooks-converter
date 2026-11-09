@@ -35,6 +35,12 @@ Warnings
   - SSL certificate error — retrying without verification
   - the Pressbooks export has no intro pages for its parts, and they couldn't be fetched from https://ecampusontario.pressbooks.pub/universaldesign2/ (no response: Failed to open stream: no suitable wrapper could be found) – each section opens its first page instead
 
+Glossary and Captions
+---------------------
+  Figure captions: 25, 0 already numbered in the book (such as "Figure 3.2")
+  To number figures and tables by section (Figure 3.2), turn on Number Figures and Tables
+  on the book's home page
+
 Known Limitations
 -----------------
   - Footnotes/endnotes may appear as raw HTML — review in Grav admin

@@ -1,0 +1,31 @@
+---
+title: "11.5 Chapter Summary"
+---
+
+The social groups that are part of a given nation or society become essential parts of the culture itself. We easily develop beliefs about the characteristics of the groups and the members of those groups (stereotypes) as well as prejudice (an unjustifiable negative attitude toward an outgroup). Our stereotypes and our prejudices are problematic because they may create discrimination—unjustified negative behaviors toward members of outgroups based on their group membership. Discrimination is a societal and health problem because it is so pervasive, takes so many forms, and has such negative effects on so many people.
+
+Stereotyping and prejudice begin from social categorization—the natural cognitive process by which we place individuals into social groups. Social categorization is in many cases quite helpful and useful. In some cases, we might categorize others because doing so provides us with information about the characteristics of people who belong to certain social groups or categories. And we may categorize others because we may not have time to do anything more thorough.
+
+A problem is that social categorization distorts our perceptions of others such that we tend to exaggerate the differences between social groups while at the same time perceiving members of groups (and particularly outgroups) as more similar to each other than they actually are. One particularly strong outcome of social categorization is outgroup homogeneity—the tendency to view members of outgroups as more similar to each other than we see members of ingroups.
+
+Once we begin to categorize other people, and we start to see the members of those groups as more similar to each other than they actually are, it then becomes very easy to apply our stereotypes to the members of the groups, without having to consider whether the characteristic is actually true of the particular individual. If men think that women are all alike, then they may act toward all women in the same way, and doing so is unfair.
+
+Our stereotypes and prejudices are learned through both cognitive and affective processes. Once they become established, stereotypes (like any other cognitive representation) tend to persevere—they are difficult to change. In the end, stereotypes become self-fulfilling prophecies, such that our expectations about the group members make the stereotypes come true. And our stereotypes also influence our performance on important tasks through stereotype threat.
+
+Ingroup favoritism occurs on the basis of even arbitrary and unimportant groupings and is found for many different types of social groups, in many different settings, on many different dimensions, and in many different cultures.
+
+The most important determinant of ingroup favoritism is simple self-enhancement. We want to feel good about ourselves, and being a member of a group that has positive characteristics provides social identity—the positive self-esteem that we get from our group memberships. In cases when our groups do not provide positive social identity, we must try to restore a positive self-worth. If we cannot leave the group, we may try to perceive the group as positively as possible, perhaps by focusing on dimensions on which the group does not compare so unfavorably.
+
+Although it is assumed that most people gain at least some positive social identity through their group memberships, people differ in the extent to which they use their group memberships to create social identity. Personality dimensions related to prejudice include authoritarianism and social dominance orientation. And there is also at least some evidence that stereotyping varies across cultures.
+
+Because social categorization is a basic human process that provides some benefits for us, stereotypes and prejudices are easy to develop but difficult to change. But stereotypes and prejudice are not inevitable.
+
+The positive effects of education on reducing prejudice are probably due in large part to the new social norms that people experience in school, which people who do not go to school do not learn. True changes in beliefs will only occur if they are supported by changes in social norms. And because social norms are so important, the behavior of individuals can help create or reduce it. Prejudice will be more likely to continue if people allow it to by not responding to it or confronting it when it occurs.
+
+Intergroup attitudes will be improved when we can lead people to focus relatively more on their concerns for others and relatively less on their desires to feel good about themselves. Intergroup contact is effective in this regard, although only under conditions that allow us to individuate others. And individuation is more successful when the people involved in the contact are interdependent, such as in cooperative educational contexts like the jigsaw classroom. Prejudice can also be reduced for people who have friends who are friends with members of the outgroup—the extended-contact hypothesis.
+
+In the “Robbers’ Cave Experiment,” as well as in many other studies, it has been found that superordinate goals that help us see others as part of the same category as we are provide a common ingroup identity and are successful at improving intergroup attitudes.
+
+You can now see how important social categorization is but also that it has many potential negative outcomes. You are now more aware how easily we categorize others, how quickly we learn stereotypes, and how fast ingroup favoritism develops, and you can better see the impact that these processes have on our judgments of others. You can use that new knowledge to help you avoid being prejudiced yourself and to help others from being prejudiced too. Doing so will be difficult, but in the end it will be useful.
+
+But just because we have stereotypes or hold prejudices does not mean that we cannot change them or that we must act on them. If sports referees learn about their prejudices, they can work harder to overcome them, and they may well be successful. And when you learn about your own stereotypes and your own prejudices, and the effects of those beliefs on yourself and others, you may be able to change your own behavior and respond more appropriately to the stereotypes and prejudices expressed by others.

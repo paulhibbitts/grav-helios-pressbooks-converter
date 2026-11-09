@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- A small made-up Pressbooks export for cases the two real books don't have: a glossary term inside a link and
+     a heading, a block-editor table caption (<figcaption>), and a Glossary page wrapped in a <section>, with a bold
+     line that isn't a term, a definition with a link and italics, a term marked inside a definition, a textbox whose
+     title holds a term, a definition with a footnote, a textbox with a bold label, a term in bold in a textbox, a
+     definition with a list, and a "Glossary Overview" page with no terms before the real Glossary. -->
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="pb-title" content="Edge Cases Sample">
+<meta name="pb-authors" content="Sample Author">
+<meta name="pb-book-license" content="cc-by">
+<title>Edge Cases Sample</title>
+</head>
+<body>
+<div class="front-matter introduction" id="front-matter-introduction">
+  <div class="front-matter-title-wrap"><h1 class="front-matter-title">Introduction</h1></div>
+  <div class="ugc front-matter-ugc"><p>An introduction.</p></div>
+</div>
+<div class="part" id="part-one">
+  <div class="part-title-wrap"><h1 class="part-title">Part 1</h1></div>
+  <div class="ugc part-ugc"><p>The first part.</p></div>
+</div>
+<div class="chapter standard" id="chapter-one">
+  <div class="chapter-title-wrap"><h2 class="chapter-title">Chapter One</h2></div>
+  <div class="ugc chapter-ugc">
+    <p>A <span class="glossary-term">schema</span>, some <span class="glossary-term">schemas</span>, and a linked <a href="#chapter-one"><span class="glossary-term">schema</span></a>.</p>
+    <h3>About <span class="glossary-term">schemas</span></h3>
+    <div class="textbox textbox--exercises"><header class="textbox__header"><p class="textbox__title">Exploring <span class="glossary-term">schemas</span></p></header><div class="textbox__content"><p>Think of a <span class="glossary-term">schema</span> you use.</p></div></div>
+    <div class="textbox textbox--examples"><div class="textbox__content"><p><strong>Tip:</strong> think of a <span class="glossary-term">schema</span>, then a <strong><span class="glossary-term">self-concept</span></strong>.</p></div></div>
+    <figure class="wp-block-table"><table><tbody><tr><td>A</td><td>B</td></tr></tbody></table><figcaption>Table 1.1 A block-editor table</figcaption></figure>
+  </div>
+</div>
+<div class="back-matter" id="back-matter-glossary-overview">
+  <div class="back-matter-title-wrap"><h1 class="back-matter-title">Glossary Overview</h1></div>
+  <div class="ugc back-matter-ugc"><p>How the glossary in this book works.</p></div>
+</div>
+<div class="back-matter glossary" id="back-matter-glossary">
+  <div class="back-matter-title-wrap"><h1 class="back-matter-title">Glossary</h1></div>
+  <div class="ugc back-matter-ugc">
+    <section data-type="glossary">
+      <p><strong>Key terms used in this book</strong></p>
+      <p><strong>Schema</strong> A mental framework; see <a href="#chapter-one">Chapter One</a> and <em>cognitive</em> <span class="glossary-term">schemas</span>.</p>
+      <p><strong>Self-concept</strong> What we know about ourselves.<sup class="footnote">[1]</sup></p>
+      <dl><dt>Social cognition</dt><dd><p>How we think about people, in two ways:</p><ul><li>automatic</li><li>controlled</li></ul></dd></dl>
+    </section>
+  </div>
+</div>
+</body>
+</html>

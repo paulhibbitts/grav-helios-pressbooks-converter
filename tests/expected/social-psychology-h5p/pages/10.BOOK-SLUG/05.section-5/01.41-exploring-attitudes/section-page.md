@@ -19,7 +19,8 @@ Every human being holds thousands of attitudes, including those about family and
 
 Table 4.1, “Heritability of Some Attitudes,” shows some of the attitudes that have been found to be the most highly heritable (i.e., most strongly determined by genetic variation among people). These attitudes form earlier and are stronger and more resistant to change than others (Bourgeois, 2002), although it is not yet known why some attitudes are more genetically determined than are others.
 
- Table 4.1 Heritability of Some Attitudes
+Table: Table 4.1 Heritability of Some Attitudes
+
 | Attitude | Heritability |
 |---|---|
 | Abortion on demand | 0.54 |
@@ -71,7 +72,7 @@ Because attitudes are evaluations, they can be assessed using any of the normal 
 
 ### Some Attitudes Are Stronger Than Others
 
-Some attitudes are more important than others because they are more useful to us and thus have more impact on our daily lives. *The importance of an attitude, as assessed by how quickly it comes to mind*, is known as attitude strength (Fazio, 1990; Fazio, 1995; Krosnick & Petty, 1995). Some of our attitudes are strong attitudes, in the sense that we find them important, hold them with confidence, do not change them very much, and use them frequently to guide our actions. These strong attitudes may guide our actions completely out of our awareness (Ferguson, Bargh, & Nayak, 2005).
+Some attitudes are more important than others because they are more useful to us and thus have more impact on our daily lives. *The importance of an attitude, as assessed by how quickly it comes to mind*, is known as [term]attitude strength[/term] (Fazio, 1990; Fazio, 1995; Krosnick & Petty, 1995). Some of our attitudes are strong attitudes, in the sense that we find them important, hold them with confidence, do not change them very much, and use them frequently to guide our actions. These strong attitudes may guide our actions completely out of our awareness (Ferguson, Bargh, & Nayak, 2005).
 
 Other attitudes are weaker and have little influence on our actions. For instance, John Bargh and his colleagues (Bargh, Chaiken, Raymond, & Hymes, 1996) found that people could express attitudes toward nonsense words such as *juvalamu* (which people liked) and *chakaka* (which they did not like). The researchers also found that these attitudes were very weak.
 
@@ -87,7 +88,7 @@ Attitudes are also stronger when the ABCs of affect, behavior, and cognition all
 
 Social psychologists (as well as advertisers, marketers, and politicians) are particularly interested in the behavioral aspect of attitudes. Because it is normal that the ABCs of our attitudes are at least somewhat consistent, our behavior tends to follow from our affect and cognition. If I determine that you have more positive cognitions about and more positive affect toward waffles than French toast, then I will naturally predict (and probably be correct when I do so) that you’ll be more likely to order waffles than French toast when you eat breakfast at a restaurant. Furthermore, if I can do something to make your thoughts or feelings toward French toast more positive, then your likelihood of ordering it for breakfast will also increase.
 
-The principle of attitude consistency (that *for any given attitude object, the ABCs of affect, behavior, and cognition are normally in line with each other*) thus predicts that our attitudes (for instance, as measured via a self-report measure) are likely to *guide behavior*. Supporting this idea, meta-analyses have found that there is a significant and substantial positive correlation among the different components of attitudes, and that attitudes expressed on self-report measures do predict behavior (Glasman & Albarracín, 2006).
+[term name="Principle of attitude consistency"]The principle of attitude consistency[/term] (that *for any given attitude object, the ABCs of affect, behavior, and cognition are normally in line with each other*) thus predicts that our attitudes (for instance, as measured via a self-report measure) are likely to *guide behavior*. Supporting this idea, meta-analyses have found that there is a significant and substantial positive correlation among the different components of attitudes, and that attitudes expressed on self-report measures do predict behavior (Glasman & Albarracín, 2006).
 
 However, our attitudes are not the only factor that influence our decision to act. The *theory of planned behavior*, developed by Martin Fishbein and Izek Ajzen (Ajzen, 1991; Fishbein & Ajzen, 1975), outlines three key variables that affect the attitude-behavior relationship: (a) the attitude toward the behaviour (the stronger the better), (b) subjective norms (the support of those we value), and (c) perceived behavioral control (the extent to which we believe we can actually perform the behavior). These three factors jointly predict our intention to perform the behavior, which in turn predicts our actual behavior (Figure 4.2, “Theory of Planned Behavior”).
 
