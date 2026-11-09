@@ -59,7 +59,7 @@ class ZipBuilder
     private const MENU_LABEL_MIN_SAVING = 10;
 
     // punctuation trimmed between a glossary term and its definition ("Schema: …", "Schema – …")
-    private const TERM_PUNCTUATION = ' :–—-';
+    private const TERM_PUNCTUATION = '[\s:–—-]+';
 
     public function setCoverImage(string $data, string $filename): void
     {
@@ -291,7 +291,10 @@ class ZipBuilder
     private function buildFrontMatter(): void
     {
         $pages = [];
-        foreach ($this->parser->frontMatters as $fm) {
+        foreach ($this->parser->frontMatters as $index => $fm) {
+            if ($this->glossary && $this->glossary['place'] === 'front' && $this->glossary['index'] === $index) {
+                continue; // it becomes its own Glossary section
+            }
             try {
                 $content = $this->converter->convert($fm['html']);
             } catch (\Exception $e) {
@@ -484,7 +487,7 @@ class ZipBuilder
     private function buildBackMatter(): void
     {
         $backMatters = $this->parser->backMatters;
-        if ($this->glossary) {
+        if ($this->glossary && $this->glossary['place'] === 'back') {
             unset($backMatters[$this->glossary['index']]); // it becomes its own Glossary section
         }
         if ($backMatters) {
@@ -523,33 +526,39 @@ class ZipBuilder
 
     // ── Glossary ──────────────────────────────────────────────────────────────
 
-    // The book's Glossary back matter page, with its terms read from it, or null when there isn't one
+    // The book's Glossary page, with its terms read from it, or null when there isn't one. It's usually in the
+    // back matter, but some books have a Glossary page they wrote themselves in the front matter.
     private function findGlossary(): ?array
     {
-        foreach ($this->parser->backMatters as $index => $bm) {
-            if (!preg_match('/^\s*glossary\b/i', $bm['title'])) {
-                continue;
-            }
-            [$entries, $otherHtml] = $this->glossaryEntries($bm['html']);
-            if (!$entries) {
-                $this->warnings[] = "a Glossary page (\"{$bm['title']}\") was found, but no terms could be read from it, so it's kept as a back matter page";
-                continue; // a later page may hold the terms
-            }
+        foreach (['back' => $this->parser->backMatters, 'front' => $this->parser->frontMatters] as $place => $pages) {
+            foreach ($pages as $index => $page) {
+                if (!preg_match('/^\s*glossary\b/i', $page['title'])) {
+                    continue;
+                }
+                [$entries, $otherHtml] = $this->glossaryEntries($page['html']);
+                if (!$entries) {
+                    $this->warnings[] = "a Glossary page (\"{$page['title']}\") was found, but no terms could be read from it, so it's kept as a $place matter page";
+                    continue; // a later page may hold the terms
+                }
 
-            return [
-                'index'   => $index,
-                'id'      => $bm['id'],
-                'title'   => $bm['title'],
-                'html'    => $otherHtml,
-                'entries' => $entries,
-            ];
+                return [
+                    'place'   => $place,
+                    'index'   => $index,
+                    'id'      => $page['id'],
+                    'title'   => $page['title'],
+                    'html'    => $otherHtml,
+                    'entries' => $entries,
+                ];
+            }
         }
 
         return null;
     }
 
     // Terms and definitions from a glossary page: paragraphs that start with the term in bold
-    // (<p><strong>Term</strong> Definition</p>), or a definition list (<dl>).
+    // (<p><strong>Term</strong> Definition</p>), a definition list (<dl>), or a heading with the term and its
+    // definition in the next paragraph. A line (<hr>) or a References heading after the terms ends them: the
+    // text after it is shown below the glossary's list.
     // Returns [entries ([term, definition HTML]), the page's other HTML].
     private function glossaryEntries(string $html): array
     {
@@ -558,11 +567,43 @@ class ZipBuilder
         $dom->loadHTML('<html><head><meta charset="UTF-8"></head><body>' . $html . '</body></html>');
         libxml_clear_errors();
 
-        $entries = [];
-        $other   = '';
+        $nodes = [];
         foreach (iterator_to_array($this->pageContent($dom)->childNodes) as $node) {
             if (!$node instanceof \DOMElement) {
                 continue;
+            }
+            // a heading or paragraph on its own in a <div> is read as if the <div> weren't there
+            $only = $node->nodeName === 'div' ? $this->onlyChildElement($node) : null;
+            $nodes[] = $only && preg_match('/^(p|h[1-6])$/', $only->nodeName) ? $only : $node;
+        }
+
+        $entries  = [];
+        $other    = '';
+        $skipNext = false; // the next paragraph is a definition already read with its heading
+        foreach ($nodes as $i => $node) {
+            if ($skipNext) {
+                $skipNext = false;
+                continue;
+            }
+            $isHeading = preg_match('/^h[1-6]$/', $node->nodeName) === 1;
+            if ($entries && ($node->nodeName === 'hr'
+                || ($isHeading && preg_match('/^(references|sources|bibliography)$/i', ContentConverter::normalizeText($node->textContent))))) {
+                // the glossary's list goes here, before the rest of the page
+                $other .= '<p>[glossary]</p>';
+                foreach (array_slice($nodes, $i) as $rest) {
+                    $other .= $dom->saveHTML($rest);
+                }
+                break;
+            }
+            $next = $nodes[$i + 1] ?? null;
+            if ($isHeading && $next && $next->nodeName === 'p' && !$this->paragraphEntry($next)) {
+                $term       = $this->boldText($node);
+                $definition = ContentConverter::normalizeText($next->textContent);
+                if ($term !== '' && $definition !== '' && mb_strlen($term) > 2) {
+                    $entries[] = [$term, $this->innerHtml($this->withoutFootnotes($next->cloneNode(true)))];
+                    $skipNext  = true;
+                    continue;
+                }
             }
             if ($node->nodeName === 'dl') {
                 $entries = array_merge($entries, $this->definitionListEntries($node));
@@ -628,7 +669,7 @@ class ZipBuilder
             $term .= $otherName;
         }
 
-        $definitionText = ltrim(ContentConverter::normalizeText($copy->textContent), self::TERM_PUNCTUATION);
+        $definitionText = self::trimPunctuation(ContentConverter::normalizeText($copy->textContent), 'start');
         if ($term === '' || $definitionText === '') {
             return null;
         }
@@ -655,7 +696,7 @@ class ZipBuilder
 
     private function boldText(\DOMElement $bold): string
     {
-        return rtrim(ContentConverter::normalizeText($bold->textContent), self::TERM_PUNCTUATION);
+        return self::trimPunctuation(ContentConverter::normalizeText($bold->textContent), 'end');
     }
 
     // a definition's footnotes are left out: a definition is one line, so they couldn't work there
@@ -691,7 +732,16 @@ class ZipBuilder
             $markdown = ContentConverter::normalizeText(strip_tags($html));
         }
 
-        return ltrim(trim(preg_replace('/\n{3,}/', "\n\n", $markdown)), self::TERM_PUNCTUATION);
+        return self::trimPunctuation(trim(preg_replace('/\n{3,}/', "\n\n", $markdown)), 'start');
+    }
+
+    // TERM_PUNCTUATION trimmed from the 'start' or 'end' of a term or definition (ltrim() and rtrim() work on
+    // bytes, so they'd also cut into characters like “ that share bytes with the dashes)
+    private static function trimPunctuation(string $text, string $side): string
+    {
+        $pattern = $side === 'start' ? '/^' . self::TERM_PUNCTUATION . '/u' : '/' . self::TERM_PUNCTUATION . '$/u';
+
+        return preg_replace($pattern, '', $text) ?? $text;
     }
 
     // the <strong> or <b> a paragraph starts with, if any
@@ -724,12 +774,13 @@ class ZipBuilder
         return $found;
     }
 
-    // after Back Matter, or in its place when the Glossary was its only page
+    // after Back Matter, or in its place when there's no other back matter
     private function glossarySectionNumber(): int
     {
         $backMatterNumber = 1 + count($this->parser->parts) + 1;
+        $otherBackMatter  = count($this->parser->backMatters) - ($this->glossary['place'] === 'back' ? 1 : 0);
 
-        return count($this->parser->backMatters) > 1 ? $backMatterNumber + 1 : $backMatterNumber;
+        return $otherBackMatter > 0 ? $backMatterNumber + 1 : $backMatterNumber;
     }
 
     // An unnumbered Glossary section, its terms in the section's Glossary setting: Open Publishing Space and
@@ -756,7 +807,8 @@ class ZipBuilder
         $body = '';
         if (trim(strip_tags($this->glossary['html'])) !== '') {
             try {
-                $body = $this->converter->convert($this->glossary['html']);
+                // the converter escapes the brackets of the glossary list's placeholder (see glossaryEntries())
+                $body = str_replace('\\[glossary\\]', '[glossary]', $this->converter->convert($this->glossary['html']));
             } catch (\Exception $e) {
                 $this->errors[] = "failed to convert the glossary page's text: " . $e->getMessage();
             }

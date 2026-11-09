@@ -37,6 +37,8 @@ Warnings
 
 Glossary and Captions
 ---------------------
+  Glossary: 13 terms, in the Glossary section (section 8), listed in alphabetical order
+  Glossary terms in the text: 0 show their definition when hovered over or tapped
   Figure captions: 25, 0 already numbered in the book (such as "Figure 3.2")
   To number figures and tables by section (Figure 3.2), turn on Number Figures and Tables
   on the book's home page
