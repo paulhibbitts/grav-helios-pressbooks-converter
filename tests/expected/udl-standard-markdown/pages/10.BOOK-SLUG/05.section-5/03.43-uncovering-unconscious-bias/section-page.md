@@ -10,11 +10,11 @@ The following video, *Understanding unconscious bias* \[2:59\] by Royal Society 
 
 Unconscious biases are important to recognize in instances when quality, relevance and competence are being evaluated (University of California San Francisco, n.d.).
 
-## **Types of Unconscious Bias**
+## Types of Unconscious Bias
 
 A vast body of research on unconscious bias shows that there are approximately 150 different types of unconscious biases. Given the various kinds of unconscious biases, all of us must be aware of our own unconscious biases. There are four fundamental unconscious biases (Kelley, 2020):
 
-### **Affinity Bias**
+### Affinity Bias
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2021/11/Affinity-Bias-1.png" alt="Two men side by side, one with his arm over the other&amp;#039;s shoulder">
@@ -27,7 +27,7 @@ The PwC (2017) video, *Blind spots: Broaden perspectives* \[3:24\], discusses si
 
 > **Blind spots: Broaden perspectives:** [Blind spots: Broaden perspectives](https://ecampusontario.pressbooks.pub/universaldesign2/?p=109#oembed-2)
 
-### **Confirmation Bias**
+### Confirmation Bias
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/confirmation-bias.png" alt="Man with a thought bubble with a checkmark in it.">
@@ -36,7 +36,7 @@ The PwC (2017) video, *Blind spots: Broaden perspectives* \[3:24\], discusses si
 
  Confirmation biases are realized when people attempt to prove assumptions and stereotypes. Confirmation bias impacts the organizational culture since people seek to confirm their beliefs or stereotypes in their interactions. Confirmation bias can affect assignments to work teams, and opportunities to participate in decision-making processes. People who exhibit confirmation bias do so after learning some aspect about a person or group and will then unconsciously seek confirmation or search for evidence to prove their assumptions. Remote learning can exacerbate confirmation bias since there is less opportunity to get to know people due to limited contact, whereas people will spend time confirming instead of getting to know someone.
 
-### **Groupthink or Conformity Bias**
+### Groupthink or Conformity Bias
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/Group-Think.png" alt="Three people thinking the same thing">
@@ -45,7 +45,7 @@ The PwC (2017) video, *Blind spots: Broaden perspectives* \[3:24\], discusses si
 
  Groupthink is a type of unconscious bias where people want to achieve group consensus. People will adopt the thoughts and opinions of the group while setting aside their personal beliefs and values. Groupthink is present in many aspects but is mostly found to occur during decision-making processes. The most damaging effect of groupthink is the pressure on group members to conform to the group and form a consensus that results in the exclusion of other ideas, perspectives, talents, skills, and thoughts. Remote collaboration requires a diversity of thought, experiences, and backgrounds.
 
-### **Perception Bias**
+### Perception Bias
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/Perception-Bias-300x135-1.png" alt="Sikh man, indian woman, black woman.">
@@ -54,7 +54,7 @@ The PwC (2017) video, *Blind spots: Broaden perspectives* \[3:24\], discusses si
 
  Perception bias is when people form generalized stereotypes and assumptions about particular groups of people. This type of bias renders it virtually impossible for people with this bias to remain objective when considering an individual in any aspect of the learning environment. Perception bias is present when a person focuses on irrelevant factors about someone they are perceiving (such as their gender, ethnicity, race, national origin, sexual orientation, etc.) and the stereotypes associated with each, rather than the qualifications and personality of the individual.
 
-### **Conscious Bias**
+### Conscious Bias
 
 Conscious Bias (also known as explicit bias) refers to the prejudiced beliefs or attitudes one has towards a person or group on a conscious level. Explicit attitudes are feelings and thoughts that one deliberately believes and can consciously document.
 
@@ -62,7 +62,7 @@ Unconscious biases are social stereotypes about certain groups of people that in
 
 It is important to note that biases, conscious or unconscious, are not limited to ethnicity and race. Though racial bias and discrimination are well documented, biases may exist toward any social group. One’s age, gender, gender identity, physical abilities, religion, sexual orientation, weight, and many other characteristics are subject to bias.
 
-## **Addressing and Combating Bias**
+## Addressing and Combating Bias
 
 The Devex (2018) video, *4 steps for busting unconscious bias* \[4:26\], details a step-by-step guide for recognizing and responding to our own unconscious biases.
 
@@ -100,7 +100,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Center for Teaching and Learning. (n.d.). Implicit Bias. DePaul University. https://resources.depaul.edu/teaching-commons/teaching-guides/inclusive-teaching/Pages/implicit-bias.aspx
 

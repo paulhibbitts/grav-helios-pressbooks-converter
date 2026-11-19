@@ -29,7 +29,7 @@ You may find it helpful to see what UDL can look like based on your teaching and
 
 ![Graphic organizer of the UDL Principles organized by means, listing examples for each means.](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2021/11/UDLPrinciples.png)
 
-## **Traditional Learning Spaces**
+## Traditional Learning Spaces
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/2814710002_36539a6b6c_o.jpg" alt="Instructor presenting to hundreds of students in a large lecture hall.">
@@ -43,7 +43,7 @@ You may find it helpful to see what UDL can look like based on your teaching and
 - Give options for how learners can ask questions, which may include raising hands, using a backchannel or submitting written questions
 - Offer assessments that provide time and space for prompt feedback (from the educator or peers) within the lesson
 
-## **Online Learning Environments**
+## Online Learning Environments
 
 ![A black man, sits at a desk typing at a computer, only his arms are visible, in a room with plants.](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/Work-from-home-6720x4480-1-scaled-1.jpg)
 
@@ -54,7 +54,7 @@ For the purposes of this module, “online” learning environments are defined 
 - Develop interactive learning activities such as polls, check-in questions, discussion topics for breakout rooms
 - Proactively include additional time and/or attempts on assessments for all learners
 
-## **Blended or Technology-Mediated Learning**
+## Blended or Technology-Mediated Learning
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/Hybrid-Learning-scaled-1.jpg" alt="A person waves at a webcam attached to a video monitor, interacting with a classroom of students.">
@@ -90,7 +90,7 @@ Alternatively, a text-based note-taking space is provided below**. Any notes you
 
 ---
 
-## **References**
+## References
 
 Benton Kearney, D. (2024). *Examples of Universal Design for Learning* \[Infographic\]. Mohawk College, Centre for Teaching & Learning Innovation. https://www.mohawkcollege.ca/centre-for-teaching-learning-innovation/teaching-resources/universal-design-for-learning#universal-design-for-educators
 

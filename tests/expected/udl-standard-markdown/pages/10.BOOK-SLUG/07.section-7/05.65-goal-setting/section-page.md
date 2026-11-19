@@ -56,7 +56,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Katz, J. (2012). Teaching to diversity: The three-block module of universal design for learning. Portage & Main Press
 

@@ -2,7 +2,7 @@
 title: "3.5: Assessment and Resources "
 ---
 
-## **Module Activity: Responding to Accommodation Requests**
+## Module Activity: Responding to Accommodation Requests
 
 Now that you understand the legal implications in managing accessibility and Human Rights Code requirements:
 
@@ -16,7 +16,7 @@ What you will also realize is that there will be individual accommodations that,
 
 You may consider using this [Word](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2021/12/Checklist_AccommodationRequest.docx)[ ↗](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2021/12/Checklist_AccommodationRequest.docx) or [PDF](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/Checklist_AccommodationRequest.pdf)[ ↗](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/Checklist_AccommodationRequest.pdf)checklist to help you respond to accommodation requests.
 
-## **Further Learning**
+## Further Learning
 
 The following are some resources to deepen your learning about the AODA and OHRC and their application in post-secondary education:
 

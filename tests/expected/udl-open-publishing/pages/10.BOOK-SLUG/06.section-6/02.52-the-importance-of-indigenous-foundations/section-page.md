@@ -2,7 +2,7 @@
 title: "5.2: The Importance of Indigenous Foundations"
 ---
 
-## **Storytelling and Oral Tradition**
+## Storytelling and Oral Tradition
 
 [announcement]
 “As the young asked, the old men and the old women thought about these matters. They gave their answers and explanations in the form of stories, songs, prayers, rituals and ceremonies.”
@@ -19,7 +19,7 @@ In Indigenous cultures, stories are usually told by Elders or Knowledge Keepers 
 
 We have tried to model elements of storytelling throughout this module. We encourage you to research and learn more about Indigenous Peoples stories from the nations in your local area, and your institutional Indigenous centre or advisory council, or Indigenous curriculum supports if you have them. These voices will be best positioned to advise how you can (or can’t) use Indigenous stories in your teaching practices.
 
-## **Medicine Wheel**
+## Medicine Wheel
 
 The cycle of life through many dimensions can be captured and symbolized through the medicine wheel. Historically, medicine wheels may have taken the form of a stone circle with vertical and horizontal lines bisecting in the middle (Kemppainen et al., 2008).
 
@@ -34,7 +34,7 @@ A more recent rendition involves colouring of the quadrants and the colours may 
 
 There are many, many teachings using the medicine wheel, and some are described in the [Four Directions Teachings](http://www.fourdirectionsteachings.com/interactive.html) interactive video website if you wish to learn more about the use of the Medicine Wheel in Indigenous pedagogy. The site features versions of the medicine wheel teachings from five Nations perspectives including: Mikmaq, Mohawk, Ojibwe, Cree and Blackfoot. We recommend you take some time to familiarise yourself with these resources and learnings and consider the relationship between your own teaching and the teachings shared in this.
 
-## **Sacred, Secular and Spiritual**
+## Sacred, Secular and Spiritual
 
 Sacred, secular and spiritual connectedness are at the root of Indigenous worldviews, events, and teachings. There are many traditions depending on the nations featured (there are over 600 nations in the land we now call Canada). Indigenous teachings and activities integrate deeper meaning beyond the obvious and connect to ancestors and the surrounding living world.
 
@@ -49,13 +49,13 @@ As post-secondary education in Ontario and across the country slowly starts to i
 
 ![Male Pow Wow dancer in full regalia](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2022/02/pow-wow-g496188cac_1920-1024x685-1.jpg)
 
-## **The Importance of Smudging**
+## The Importance of Smudging
 
 Smudging is another practice that involves burning of one or more of the sacred four medicines (sage, cedar, tobacco and sweet grass) while reflecting and engaging in reflective cleansing. Smudging begins by cleansing of the air, then the mind, eyes, ears and mouth to see, hear, and speak well of others. It also involves letting go of the negatives and is part of living a good life and welcomes cleansing of the spirit and emotions (Ontario Federation of Labour, 2019).
 
 The following video, [*The Importance of Smudging*](https://uwin365-my.sharepoint.com/:v:/g/personal/kechego1_uwindsor_ca/IQBqcc6dhQ5bSLLeqCssylsCAYVE7rBhwt_aUYlv7olpXug?e=p3FMpx) \[4:54\], has a brief overview of what smudging is and what it means to Jaimie Kechego.
 
-## **The Learning Spirit**
+## The Learning Spirit
 
 In the book “Aboriginal Learning: A Review of Current Metrics of Success,” Tunison (2007) explores the often-observed academic success gap in Aboriginal learners by identifying a crucial element which he calls the “Learning Spirit”. By redefining what success looks and feels like from the Indigenous learner perspective, post-secondary educators will become knowledgeable in how to support the learning spirit within the student.
 
@@ -63,7 +63,7 @@ The Mt. Elgin Industrial Institute – Indian Residential School Monument, erect
 
 The video below \[6:12\] contains Jaimie’s story about the monument, [the importance of the learning spirit](https://uwin365-my.sharepoint.com/:v:/g/personal/kechego1_uwindsor_ca/IQA_ekp-uoswTYqqVvjOlsqbAX2b9PfrIhMnlC_SOwb9iZ0?e=IBDATB), and how it connects to herself, her family, and the residential school system.
 
-## **Intergenerational and Relational Learning**
+## Intergenerational and Relational Learning
 
 Robin Wall Kimmerer in her book, Braiding Sweetgrass, mentions several teachings that have been handed down generation after generation. In her chapter, “Mishkos Kenomagwen: The Teachings of Grass”, she discusses learning from Elder Lena about how to select one of the four sacred medicines – sweetgrass. Lena says,
 
@@ -106,7 +106,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Archibald, J., (n.d.). On becoming story ready. Indigenous Storywork. Retrieved Dec 18, 2021 from https://indigenousstorywork.com/1-for-educators/
 

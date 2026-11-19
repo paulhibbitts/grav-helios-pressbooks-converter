@@ -24,7 +24,7 @@ Post-secondary educators who participate in the entire UDL for IDEA project shou
 
  ## **Intersectionalities**
 
-### **Why Universal Design for Learning**
+### Why Universal Design for Learning
 
 In the 1980s, architect Ronald Mace introduced the term Universal Design (UD). In its original application, UD refers to “the design of products and environments to be usable by all people, to the greatest extent possible, without the need for adaptation or specialized design” (Connell et al., 1997).
 
@@ -46,11 +46,11 @@ The CAST (2018) video, *UDL to Change the World \[1:03\]*, explains more about w
 
 > **UDL to Change the World:** [UDL to Change the World](https://ecampusontario.pressbooks.pub/universaldesign2/?p=21#oembed-1)
 
-### **Focus on AODA**
+### Focus on AODA
 
 This guide is firmly rooted in the Accessibility for Ontarians with Disabilities Act (AODA) as it applies in the post-secondary context. As such, it may be used as part of mandatory training in post-secondary settings.
 
-### **Indigenous Pedagogies and Decolonization**
+### Indigenous Pedagogies and Decolonization
 
 We recognize the presence of racist practices and processes that have posed barriers for students who identify as members of racialized groups. These barriers can mean that students do not enter post-secondary education, or do not complete their post-secondary program. This bias is found in the design and delivery of post-secondary education and in the scholarships of teaching and learning.
 
@@ -90,7 +90,7 @@ The guarantee in this Charter of certain rights and freedoms shall not be constr
 
 ---
 
-## **References**
+## References
 
 Antoine, A., Mason, R., Mason, R., Palahicky, S., & Rodriguez de France, C. (2018). Pulling together: A guide for curriculum developers.BCcampus.https://opentextbc.ca/indigenizationcurriculumdevelopers
 

@@ -6,7 +6,7 @@ title: "2.2: Applying UDL in the Development Phase"
 
 Whether you have had an opportunity to implement UDL in the design phase of your curriculum, implementing it as you start to develop your curriculum, course or program is effective and impactful for learners.
 
-## **Things to Consider**
+## Things to Consider
 
 When developing your course, think about:
 
@@ -27,7 +27,7 @@ When developing your course, think about:
 - Encouraging executive functioning skills and independent learning responsibilities
 - Building-in opportunities for reflection, self-assessment, review, remediation, extending learning and collaboration
 
-## **What Educators Say**
+## What Educators Say
 
 In *UDL at Mohawk College* \[2:50\], Melodie Spencer, a Professor in the Early Childhood Education Program, gives an overview of how she has embedded UDL throughout her courses and teaching philosophy.
 
@@ -43,6 +43,6 @@ Now that you’re familiar with UDL implementation in the development phase, let
 
 ---
 
-## **References**
+## References
 
 Mohawk College Official. (2019, Jan 25). UDL at Mohawk College – Melodie Spencer \[Video\]. YouTube. https://youtu.be/bnijcjiqigs

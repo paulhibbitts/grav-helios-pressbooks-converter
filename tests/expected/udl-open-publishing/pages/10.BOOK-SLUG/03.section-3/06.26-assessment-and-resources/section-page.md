@@ -2,7 +2,7 @@
 title: "2.6: Assessment and Resources"
 ---
 
-## **Module Activity: UDL Course Assessment Tool**
+## Module Activity: UDL Course Assessment Tool
 
 Mohawk College’s [UDL Course Assessment ↗](https://web.mohawkcollege.ca/centre-teaching-learning/apps/udl/UDLCA-v4/) is an interactive tool that can support you as an educator to self-assess your current UDL implementation. It offers targeted resources to learn more about specific UDL elements that may be beneficial in post-secondary and technology-enabled learning environments.
 
@@ -11,7 +11,7 @@ For this activity, use the link provided above or the image below to access and 
 [![Mohawk College Universal Design for Learning Course Assessment Online Module - Version 4](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2026/04/UDLCAv4-splash-1024x604.png)
 ](https://web.mohawkcollege.ca/centre-teaching-learning/apps/udl/UDLCA-v4/)
 
-## **Further Learning**
+## Further Learning
 
 The following are some resources to deepen your learning about UDL in post-secondary education and its relation to technology:
 

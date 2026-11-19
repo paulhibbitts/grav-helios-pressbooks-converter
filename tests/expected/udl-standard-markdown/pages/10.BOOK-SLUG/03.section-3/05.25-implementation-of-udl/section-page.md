@@ -10,7 +10,7 @@ The following video, *Getting Started* \[1:14\] by UDL On Campus (2015), offers 
 
 There are a number of strategic approaches to support UDL implementation in your context. Review the ideas below and determine which approach, or combination of approaches, you feel would suit your context best.
 
-## **Learning Outcomes**
+## Learning Outcomes
 
 An ideal place to begin with UDL implementation is by reviewing and refining the curriculum or course learning outcomes. Effective implementation requires content to have measurable and explicit learning goals/outcomes. Consider the following implementation steps for your context:
 
@@ -22,7 +22,7 @@ An ideal place to begin with UDL implementation is by reviewing and refining the
 
 When using this approach for your UDL implementation, it is important to note that the application of UDL does not modify or provide options for the learning outcomes/goals. Instead, UDL encourages offering students options to obtain knowledge, as well as options to demonstrate their learning to meet those outcomes/goals.
 
-## **Assessments**
+## Assessments
 
 UDL can be implemented in diagnostic, formative, or summative assessment methods. UDL assessments are:
 
@@ -43,7 +43,7 @@ Because UDL is not prescriptive regarding the types of assessments used, post-se
 
 You will notice the phrase “when you can” is used above. It is an important note as sometimes our assessments are based on factors that are external to our curriculum/course (e.g., preparing students for governing bodies, etc.).
 
-## **A Process for Getting Started**
+## A Process for Getting Started
 
 Loui Lord Nelson developed a process for UDL implementation that both starts and ends with the essential element of UDL: Reflection focused on learners.
 
@@ -53,7 +53,7 @@ To view the steps of this process, navigate through the dialog cards below using
 
  (Nelson, 2014, p. 136)
 
-## **Plus One Strategy**
+## Plus One Strategy
 
 Thomas J. Tobin, UDL implementer and author, describes UDL as “…really just ‘plus-one’ thinking.” Meaning for each learning activity, assessment or interaction that learners have, try to “…provide one more way for that interaction to happen” (Battaglia, 2019). For those not sure where to begin with UDL implementation, the +1 strategy parses UDL “into manageable, approachable chunks” (Battaglia, 2019).
 
@@ -63,7 +63,7 @@ To apply the +1 approach, look at what you are already doing in your teaching an
 - If you currently post lesson content as a PowerPoint, post the same content as a Word document and link to a text-to-speech tool
 - If you demonstrate a skill in a synchronous class/lab, add a video of the skill for learners to review
 
-## **Planning**
+## Planning
 
 Once you have determined the best way to proceed with your UDL implementation, planning is essential to avoid some of the challenges with time noted earlier. Remember, the implementation of UDL is a dynamic process; small changes over time will ultimately create a course or curriculum that is more inclusive, equitable and accessible. The learning activity for this topic will walk you through your UDL implementation planning process.
 
@@ -91,7 +91,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Battaglia, A. (2019, Jun 6). “Plus-One” thinking: A framework for inclusive teaching. University of Texas at Austin Faculty Innovation Center. https://facultyinnovate.utexas.edu/news/plus-one-thinking-framework-inclusive-teaching
 

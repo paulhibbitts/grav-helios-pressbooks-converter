@@ -20,7 +20,7 @@ Download a PDF copy of these principles from the [First Peoples Principles of Le
 
 Wherever possible, these principles should be considered and adapted when helping to create a climate of inclusiveness for all students in a classroom, but in particular, for First Nations, Métis or Inuit students.
 
-## **Utilizing UDL Principles**
+## Utilizing UDL Principles
 
 The goal of UDL is to support learners to become masterful learners in the way that meets their learning goals and needs. As stated in section 6.1, “Every decision we make, as educators, includes unconscious bias.” UDL implementation helps educators to create space for indigenous pedagogies in their content, while also helping to support the innate needs and self-determination of all learners, with appropriate emphasis on the needs of Indigenous students.
 
@@ -62,6 +62,6 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 First Nations Education Steering Committee. (n.d.). First peoples principles of learning. Retrieved December 17, 2021, from http://www.fnesc.ca/first-peoples-principles-of-learning/![(opens in a new tab)](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2022/01/icons8-interface-32-e1644590373117.png)

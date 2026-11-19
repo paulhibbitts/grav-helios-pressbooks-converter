@@ -38,7 +38,7 @@ At this time, the Accessibility Standards comprises of five requirements necessa
 
 **Note:** Each standard is alternatively being reviewed every five years. When deemed necessary, requirements and implementation timeframe are added or modified. Changes to the standards may require institutions to re-train all employees on its developments.
 
-## **Roles and Responsibilities of Educators under the IASR**
+## Roles and Responsibilities of Educators under the IASR
 
 Following the requirements under the IASR in the learning environment can take many forms, such as accessible information and communications. The information and communications standard outlines requirements for creating, providing, and receiving information and communications in ways that are accessible for people with disabilities. This includes:
 
@@ -47,7 +47,7 @@ Following the requirements under the IASR in the learning environment can take m
 3. Training to professors and other educators
 4. Libraries of educational and training institutions
 
-### **1. Websites and Web Content**
+### 1. Websites and Web Content
 
 All internet websites and web content, including web-based applications, must conform with the World Wide Web Consortium Web Content Accessibility Guidelines[ ](https://www.w3.org/TR/WCAG20/)[(WCAG) 2.0 Level A and AA ↗](https://www.w3.org/TR/WCAG20/) other than,
 
@@ -81,7 +81,7 @@ When the materials requested are deemed unconvertible, an explanation must be pr
 
  Now think about this question: how does using an accessible learning platform and selecting accessible or conversion-ready format educational materials help students with disabilities feel more included?
 
-### **3. Additional Training to Professors and Other Educators**
+### 3. Additional Training to Professors and Other Educators
 
 Institutions are required to provide training to educators with accessibility awareness training related to accessible program or course delivery and instruction and keep a record of the training provided, including the dates on which the training is provided and the number of individuals to whom it is provided.
 
@@ -94,12 +94,12 @@ Institutions are required to provide training to educators with accessibility aw
 
 When requested, and where available, institution libraries shall provide, procure or acquire by other means an accessible or conversion-ready format of print, digital or multimedia resources or materials for a person with a disability, upon request.
 
-#### **Applicability**
+#### Applicability
 
 - Print resources can include but are not limited to, books, magazines, posters, journals, newspapers and newspaper articles.
 - Digital or multimedia resources are usually a combination of text and audio and include, but are not limited to, materials such as films, videos, CD-ROMS and DVDs.
 
-#### **Unconvertible Information**
+#### Unconvertible Information
 
 When the requested materials or resources are unconvertible, the library needs to explain the reason why and provide a summary of the information in a format that takes into account the accessibility needs of the person who made the request.
 
@@ -121,7 +121,7 @@ When the requested materials or resources are unconvertible, the library needs t
 
 ---
 
-## **References**
+## References
 
 Accessibility Services Canada. (n.d.). About the AODA \[Chart\]. https://accessibilitycanada.ca/aoda/
 

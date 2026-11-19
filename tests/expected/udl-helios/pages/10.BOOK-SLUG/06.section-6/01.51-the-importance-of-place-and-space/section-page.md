@@ -2,7 +2,7 @@
 title: "5.1: The Importance of Place and Space"
 ---
 
-## **Land-Based Education**
+## Land-Based Education
 
 One of the most fundamental and basic principles of Indigenous pedagogies is interconnectedness to the land. The land is essentially inseparable from all learning, all elements of life, and embedded in spirit—hence the significance of the term—Mother Earth.
 
@@ -22,7 +22,7 @@ Robin Wall Kimmerer (a botanist, Professor and enrolled member of the Citizen Po
 
  Watch[*The Importance of Land-Based Education*](https://uwin365-my.sharepoint.com/:v:/g/personal/kechego1_uwindsor_ca/IQCNg4sU8jhOTJG-KNYs_4QVARfStazJEUD40lMc6j3KW98?e=mXqWIJ) \[5:28\] video to see an example of land-based lessons at the Black Oak Heritage Park.
 
-## **Place-Based Education**
+## Place-Based Education
 
 Indigenous pedagogies connect learning to a specific place, and thus knowledge is situated in relationship to a location, experience, and group of people. For curriculum developers, this means creating opportunities to learn about the local place and to learn in connection to the local place. The following *[Importance of Place-based Learning](https://uwin365-my.sharepoint.com/:v:/g/personal/kechego1_uwindsor_ca/IQCjC9pw_3UvQL6oyjGtpDTiAR21Vk47HT-Mi9hNM1sABSg?e=NpvmkH) \[2:06\] video* explains place-based learning at the site of the [Nimkii Binesi Zaswaaning (Thunderbird’s Nest) ↗](https://windspeaker.com/news/windspeaker-news/new-anishinabe-tipi-place-learning-and-renewal).
 
@@ -47,7 +47,7 @@ Experiential learning plays a significant role in Indigenous pedagogies. It has 
 From the whitepaper, the following was used to help refine an experiential learning definition drawing upon many western influential researchers including Kolb, Dewey, Lewin, and Piaget (University of Toronto, 2017):
 
 [announcement]
-### **Six Core Tenets of Experiential Learning Theory**
+### Six Core Tenets of Experiential Learning Theory
 
 Drawing on David A. Kolb’s (1984) theory, experiential learning is understood to be “the process whereby knowledge is created through the transformation of experience” (p. 38). Building upon earlier theories on learning through experience (Dewey, 1938; Lewin, 1951; Piaget, 1978), Kolb’s experiential learning theory (ELT) is founded on six core tenets (Kolb & Kolb, 2005):
 
@@ -86,7 +86,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Battiste, M. (2002). Indigenous knowledge and pedagogy in First Nations education: A literature review with recommendations. Ottawa: National Working Group on Education and Indian and Northern Affairs Canada. https://www.afn.ca/uploads/files/education/24._2002_oct_marie_battiste_indigenousknowledgeandpedagogy_lit_review_for_min_working_group.pdf
 

@@ -4,13 +4,13 @@ title: "4.2: Positionality and Intersectionality"
 
 Now that you have spent some time reflecting on equity, diversity, and inclusion, let’s dive a bit deeper into how our social identities, positionality, and privilege(s) intersect.
 
-## **Positionality**
+## Positionality
 
 Positionality refers to the personal values, views, and location in time and space that influence how one engages with and understands the world. It is wrapped up in the dynamics of power and privilege. For example, your gender, race, class, and other aspects of your social identities influence and inform how you move through the world, what knowledge you produce and value, and the biases through which everything you say, think, and do, is filtered, intentionally or otherwise.
 
 Moreover, positionality is experienced differently in different contexts, and can dictate how much access you have (to resources, support, etc.) in society (The University of British Columbia, n.d.). In this sense, we cannot ignore “the power inherent in . . . social positions” (Misawa, 2010, p. 26).
 
-## **Intersectionality**
+## Intersectionality
 
 In this video, *What is Intersectionality?* \[1:54\] by the National Association of Independent Schools (2018), Professor Kimberlé Crenshaw talks about the study of how overlapping or intersecting social identities relate to systems and structures of discrimination.
 
@@ -29,7 +29,7 @@ The following graphic entitled “Intersectionality” visually displays how soc
 
 Critical social psychology describes identity as a social construction that is learned through interactions with others and the world, and that has a strong impact on who we become (Allen & Rosatto, as cited in Shah, 2018). Social privilege exists on the basis of complex and intersecting social identities, such as race, gender, ability, class, faith/religion, age and sexuality and the relative distance of these identities to dominant identities and power (Black & Stone, as cited in Shah, 2018).
 
-## **Wheel of Power/Privilege**
+## Wheel of Power/Privilege
 
 Sylvia Duckworth’s “wheel of power/privilege” is another visual representation of how power, privilege, and social identities intersect. The graphic below uses the imagery of a wheel, sectioned off by the following social identities and respective categories:
 
@@ -71,7 +71,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Collins, P. H. (2001). Black feminist thought: Knowledge, consciousness, and the politics of empowerment. New York: Routledge.
 

@@ -4,7 +4,7 @@ title: "1.2: UDL Guidelines"
 
 Universal Design for Learning (UDL) is a curriculum design, development, and delivery framework used to create equitable, inclusive, and accessible learning environments. UDL assumes all learning environments are diverse and that all learners have variable learning needs. UDL works to provide learning spaces (both physical and virtual) where all students can effectively learn, and demonstrate their learning while advancing learner agency and supporting learners to be “purposeful and reflective, resourceful and authentic, strategic and action-oriented” (CAST, 2024).
 
-## **Networks**
+## Networks
 
 UDL guidelines are based on the three primary brain networks shown in the slides below:
 
@@ -20,7 +20,7 @@ This slide show describes key facts about the brain from a UDL perspective. To a
 
 Creating learning experiences that activate these three broad learning networks is a useful pursuit for educators as it works towards the goal of expert learning. In addition, the UDL framework reminds us that all brains are variable and that monolithic “learning styles” do not actually exist. Instead, we know that each brain is processing information in complex and variable interactions between the various networks of the brain.
 
-## **Principles**
+## Principles
 
 CAST has identified a series of principles to guide design, development, and delivery in practice to address each of the different networks:
 
@@ -28,7 +28,7 @@ CAST has identified a series of principles to guide design, development, and del
 - Multiple means of **representation**
 - Multiple means of **action** and **expression**
 
-## **Considerations**
+## Considerations
 
 Each network contains considerations (three for each network making nine in total) that emphasize learner diversity that could either present barriers to, or opportunities for, learning. The considerations for each network are as follows:
 
@@ -66,7 +66,7 @@ The guidelines are not prescriptive, but instead offer informed suggestions that
 
  [Transcript of What is UDL? (PDF) ↗](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/07/M1_UDLtranscript-1.pdf)
 
-## **The UDL Guidelines (CAST)**
+## The UDL Guidelines (CAST)
 
 Some UDL implementers prefer to use a PDF version of the [UDL Guidelines ↗](https://udlguidelines.cast.org/#) from CAST that offer additional elements for each checkpoint. To learn more about the UDL Guidelines from CAST, consider reviewing the interactive version and accompanying resources on [The UDL Guidelines ↗](https://udlguidelines.cast.org/) website. The UDL Guidelines are consistently informed by user feedback and ongoing research, meaning the guidelines used in UDL for IDEA have been revised a number of times.
 
@@ -88,7 +88,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
 ---
 
-## **References**
+## References
 
 CAST (2018). UDL & the Learning Brain \[Graphic\]. https://www.cast.org/products-services/resources/2018/udl-learning-brain-neuroscience
 

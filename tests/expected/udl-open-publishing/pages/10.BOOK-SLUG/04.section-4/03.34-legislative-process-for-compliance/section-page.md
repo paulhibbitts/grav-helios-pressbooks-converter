@@ -4,7 +4,7 @@ title: "3.4: Legislative Process for Compliance"
 
 Each legislation establishes a process to ensure institutions are meeting all the legal requirements set out. And in some cases, a process for the public to file complaints in situations where they feel discriminated against. As an instructor delivering service on behalf of the institution, it is your responsibility to ensure that you follow these processes and ensure your actions are continuously compliant with the law.
 
-## **Accessibility for Ontarians with Disabilities Act (AODA)**
+## Accessibility for Ontarians with Disabilities Act (AODA)
 
 Post-secondary educational institutions are considered “Broader Public Sector” organizations under [Schedule 1 ↗](https://www.ontario.ca/laws/regulation/110191#BK163) of the AODA. As such, they are required to:
 
@@ -23,13 +23,13 @@ Under the AODA, the Officer has the ability to fine individuals up to $2,000/day
 
 As a representative of your institution, all information you create or make available publicly is subject to AODA requirements. This includes public websites and web content, applications, and publications. Your institution may have internal policies and procedures on ownership and accountability of information dissemination—it is important for you to understand what they may be to ensure you meet the AODA requirements set out.
 
-## **Ontario Human Rights Code (OHRC)**
+## Ontario Human Rights Code (OHRC)
 
 The Code has legal primacy over all other laws including the AODA. This means that even though you created content or delivered information that meets AODA requirements, you may still have to further adjust your information to suit an individual’s specific needs. Hopefully, with the flexibility built in using UDL principles, any individual adjustments you make will be simple and not arduous.
 
 When an individual believes they have experienced discrimination or harassment, which includes not receiving reasonable accommodation, they can file an application with the [Human Rights Tribunal of Ontario (HRTO). ↗](https://tribunalsontario.ca/hrto/) The HRTO can facilitate and settle disputes through mediation, or if the parties do not agree to mediation, a hearing will be held. The HRTO will consider if all the principles under the Human Rights Code have been met by the institution.
 
-## **Procedural Component**
+## Procedural Component
 
 The HRTO will also review whether the institution met its duty to accommodate. This duty includes a procedural component, and substantive component. The process to assess an accommodation (procedural component) is just as important as the final solution (substantive component). This means there needs to be meaningful interaction between the parties focusing on the student’s needs and consideration of whether the education provider can accommodate those needs (OHRC, 2018).
 
@@ -44,7 +44,7 @@ So, while the substantive component – providing the materials in the requested
 
 [/announcement]
 
-## **Record Retention**
+## Record Retention
 
 When you receive an accommodation request, it is important that you document your process. As we have highlighted, the procedural component of accommodation requires the education provider to determine what kind of modifications or accommodations might be required to allow a student to fully participate in school. While Student Accessibility Services can assist in devising solutions, the educator is also required to review the requests and participate in the process of solution-finding. Documentation of this review and process will support your position that you have met your duty to accommodate under the law. Documentation could come in the form of:
 
@@ -80,7 +80,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Canadian Legal Information Institute \[CanLII\]. (2011). Fisher v. York University, 2011 HRTO 1229. https://canlii.ca/t/fm44v
 

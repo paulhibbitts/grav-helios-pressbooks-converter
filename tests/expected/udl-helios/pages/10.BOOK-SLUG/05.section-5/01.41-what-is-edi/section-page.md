@@ -4,7 +4,7 @@ title: "4.1: What is EDI?"
 
 EDI is an acronym that includes the three interrelated concepts of equity, diversity, and inclusion. When you think of these three words, what comes to mind for you? What do you notice? Do you notice differences, similarities, or relationships between these three words? Let’s first look at some formal definitions with examples and guiding questions for each of these terms.
 
-## **Equity**
+## Equity
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2021/11/justice-1-300x300.png" alt="see saw depiction of equity showing accommodations that consider people’s needs">
@@ -29,7 +29,7 @@ For example, in the picture below, three people of different heights are trying 
 
 **Delivering instruction:** Providing grace days; how you provide feedback on assessments, for example, hand-written comments on an essay
 
-## **Diversity**
+## Diversity
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/001-diversity-300x300-1.png" alt="Three people with a pride flag in between them.">
@@ -50,7 +50,7 @@ Organizations may ask these questions if they are interested in promoting divers
 - How can we encourage diversity through recruitment?
 - Why aren’t we appealing to a more diverse group of candidates?
 
-## **Inclusion**
+## Inclusion
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/003-love-300x300-1.png" alt="Black, brown, and white hands encircle a heart.">
@@ -71,7 +71,7 @@ If one is focused on inclusivity, an organization may ask:
 - Are there barriers in the way of marginalized individuals feeling a sense of acceptance and belonging?
 - Are there actions or attitudes, direct or indirect, that we are doing as an organization that is impacting more diverse teams (Bolger, 2020)?
 
-## **What Equity, Diversity, and Inclusion Really Means**
+## What Equity, Diversity, and Inclusion Really Means
 
 <figure>
 <img src="https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/DesignWeekPortland-DEI-Panel-Slide-2000px_1573693570-1024x576-1.jpg" alt="Infographic of diversity, equity, and inclusion.">
@@ -105,7 +105,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Bolger, M. (2020, May 24). What’s the difference between diversity, inclusion, and equity? General Assembly. https://generalassemb.ly/blog/diversity-inclusion-equity-differences-in-meaning/
 

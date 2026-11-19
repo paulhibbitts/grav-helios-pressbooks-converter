@@ -6,7 +6,7 @@ title: "2.3: Applying UDL in the Delivery Phase "
 
 While it is hoped that you have been able to include UDL in your curriculum design and development sometimes, as educators, we do not have complete control over the content to be taught. If you have ever inherited a course, textbook selection, learning outcomes or assessment, you have been in this situation. While it is wonderful to be able to embed UDL into the curriculum design and development process, if you have not been able to, the UDL framework can make a significant impact to address issues of equity, inclusion and accessibility in the delivery phase.
 
-## **Things to Consider**
+## Things to Consider
 
 When delivering your instruction, think about:
 
@@ -21,7 +21,7 @@ When delivering your instruction, think about:
 - Providing interim due dates for large assessments and prompting learners about upcoming assessment(s)
 - Leveraging educational technologies or learning management systems for delivery of materials, key information and learning activities
 
-## **What Educators Say**
+## What Educators Say
 
 In *UDL at Mohawk College* \[2:27\], Lisa Pender, a Professor in the Liberal Studies Program, describes her UDL implementation and the impact of employing UDL on her and her learners.
 
@@ -38,6 +38,6 @@ Now that you’re familiar with UDL implementation in the delivery phase, let’
 
  ---
 
-## **References**
+## References
 
 Mohawk College Official. (2018, Oct 22). UDL at Mohawk College – Lisa Pender \[Video\]. YouTube. https://youtu.be/9AqOnlL0K9k

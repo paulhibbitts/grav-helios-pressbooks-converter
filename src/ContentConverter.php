@@ -764,6 +764,10 @@ class ContentConverter
         // league/html-to-markdown uses * for bullets; normalise to -
         $result = preg_replace('/^(\s*)\* /m', '$1- ', $result);
 
+        // A heading that's all bold ('## **Things to Consider**', as many books write them) is a plain
+        // heading: headings are bold already, and the bold would also show in a page's list of sections
+        $result = preg_replace('/^(#{1,6}) \*\*([^*\n]+)\*\*[ \t]*$/m', '$1 $2', $result);
+
         $result = html_entity_decode($result, ENT_QUOTES | ENT_HTML5, 'UTF-8');
         // Map Windows-1252 numeric entities (&#128;–&#159;) to proper Unicode.
         // html_entity_decode treats these as control characters under ENT_HTML5

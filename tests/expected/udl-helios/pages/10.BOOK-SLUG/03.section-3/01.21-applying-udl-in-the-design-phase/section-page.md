@@ -6,7 +6,7 @@ title: "2.1: Applying UDL in the Design Phase"
 
 Including UDL elements as the first step in curriculum, course and/or program development is ideal. Think about the UD example offered in Module 1 – Introduction and Overview of UDL: retrofitting accessibility and inclusion takes more work, time and effort (e.g., removing existing stairs to replace it with a ramp takes time, additional funds and effort). Instead, we can consider the needs of our learners, and ourselves as educators, and design our course with inclusion, equity, diversity, and access in mind.
 
-### **Things to Consider**
+### Things to Consider
 
 When thinking about your course or curriculum design, or re-design, consider:
 
@@ -30,7 +30,7 @@ The following video, *UDL, Technology and Materials* \[1:18\] by UDL on Campus (
 
 > **UDL, Technology and Materials:** [UDL, Technology and Materials](https://ecampusontario.pressbooks.pub/universaldesign2/?p=51#oembed-1)
 
-## **What Educators Say**
+## What Educators Say
 
 In *UDL at Mohawk College* \[2:43\], Tara Dinyer, Professor in the Health, Wellness and Fitness Program, describes her UDL implementation process and provides examples of some of the UDL elements she has embedded into her courses.
 
@@ -47,7 +47,7 @@ Now that you’re familiar with UDL implementation in the design phase, let’s 
 
  ---
 
-### **References**
+### References
 
 Mohawk College Official. (2019, Jan 25). UDL at Mohawk College – Tara Dinyer \[Video\]. YouTube. https://youtu.be/QmqTWP57UUk
 

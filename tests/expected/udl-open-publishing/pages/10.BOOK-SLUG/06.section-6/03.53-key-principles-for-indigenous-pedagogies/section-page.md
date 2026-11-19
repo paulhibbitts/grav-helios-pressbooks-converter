@@ -2,7 +2,7 @@
 title: "5.3: Key Principles for Indigenous Pedagogies"
 ---
 
-## **First Peoples Principles of Learning**
+## First Peoples Principles of Learning
 
 There are many elements to address regarding access to and permission to use Indigenous knowledge. The [First Nations Education Steering Committee (FNESC)](http://www.fnesc.ca/about-fnesc/) in British Columbia, with the input of Indigenous Elders, scholars and knowledge keepers, created the First Peoples Principles of Learning. While these principles are not exhaustive, they provide an informed approach to implementing Indigenous Pedagogies in post-secondary education in Ontario.
 
@@ -20,7 +20,7 @@ The nine principles are detailed below (First Nations Education Steering Committ
 
 The following videos, [*Key Principles with Indigenous Pedagogies – Part 1* ](https://uwin365-my.sharepoint.com/:v:/g/personal/kechego1_uwindsor_ca/IQCRvpYVR5d2R48fk9vac80-ATFl0oNGU-wrlSCioqbTIGA?e=rGuZmt)\[6:00\] and [*Key Principles with Indigenous Pedagogies – Part 2* ](https://uwin365-my.sharepoint.com/:v:/g/personal/kechego1_uwindsor_ca/IQD4RdYDRsKSRLDr589t-uurAV7GsLjuYrbO4u0LnRkQCGE?e=4uPaIJ) \[6:32\], go into this information in more detail:
 
-## **Personal and Holistic Pedagogies**
+## Personal and Holistic Pedagogies
 
 According to Antoine et al. (2018), “the principle of holism is linked to that of relationality, as Indigenous thought focuses on the whole picture because everything within the picture is related and cannot be separated”.
 
@@ -47,7 +47,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Antoine, A., Mason, R., Mason, R., Palahicky, S., & Rodriguez de France, C. (2018). Pulling together: A guide for curriculum developers. BCcampus.
 

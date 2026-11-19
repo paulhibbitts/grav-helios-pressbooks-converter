@@ -12,7 +12,7 @@ The UDL on Campus (2015) video, *Innovations at the Margins* \[1:07\], outlines 
 
 Here are some examples of how UDL can support EDI in our post-secondary context:
 
-## **Develop Content for Inclusion**
+## Develop Content for Inclusion
 
 Applying UDL starts when you begin to design and develop your content. Designing and developing for inclusion means asking yourself: “Who am I designing for? Who will see themselves in the materials I’ve selected for this course? Who will feel included? Do my teaching materials feature certain groups to the exclusion of other groups?” Here are some UDL tips for designing and developing for inclusion:
 
@@ -20,7 +20,7 @@ Applying UDL starts when you begin to design and develop your content. Designing
 - Avoid images and descriptions of people and groups that foster stereotypes (e.g., images depicting the concept of a family, poverty, disability)
 - Include content warnings for potentially sensitive or offensive content.
 
-## **Use Instructional Strategies that Value Diversity**
+## Use Instructional Strategies that Value Diversity
 
 Applying UDL principles to instructional strategies supports diversity by recognizing that there are multiple ways of learning and there are multiple ways of knowing. Here are some UDL tips for teaching that supports diversity:
 
@@ -29,7 +29,7 @@ Applying UDL principles to instructional strategies supports diversity by recogn
 - Check your assumptions about technological resources (e.g., bandwidth) available to students
 - Provide opportunities for varied learning styles by using mixed-methods evaluations (choice of presentations, research papers, exams, etc. to meet the same learning outcomes, when possible).
 
-## **Provide Assessments and Feedback that Value Equity**
+## Provide Assessments and Feedback that Value Equity
 
 Applying UDL in assessments includes not only developing assessments that are equitable, it also means grading and providing feedback in ways that value equity. The following UDL tips support equity in designing and grading assessments:
 
@@ -64,6 +64,6 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 UDL on Campus. (2015, Oct 6). Innovation at the Margins \[Video\]. YouTube. https://youtu.be/4yUYQgcWGGA

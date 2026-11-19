@@ -23,7 +23,7 @@ Lastly, leveraging the technology available can support UDL implementation and s
 
 Time can be a barrier to UDL implementation, but not an insurmountable one.
 
-## **Support**
+## Support
 
 ![Child g97ca2a30d](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/child-g97ca2a30d_1920.jpg)
 
@@ -39,7 +39,7 @@ However, UDL support does exist, just not always in the places educators might e
 
  Creating a list of UDL support persons or groups, for your educational context, can help build a solid support network for your continued UDL implementation.
 
-## **Knowledge**
+## Knowledge
 
 ![Books g2a2313ff7 1920 1024x682](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/books-g2a2313ff7_1920-1024x682-1.jpg)
 
@@ -80,6 +80,6 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 Mohawk College Official. (2018, Oct 22). UDL at Mohawk College – Ryan Iles \[Video\]. YouTube. https://youtu.be/qjCsBX8IRXw

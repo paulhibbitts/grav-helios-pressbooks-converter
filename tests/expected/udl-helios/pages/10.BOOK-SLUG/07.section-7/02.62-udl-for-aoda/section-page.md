@@ -8,7 +8,7 @@ The role of UDL for AODA is not to replace the need for disability related accom
 
 Let’s have a look at some examples of how UDL can support common AODA and accommodation requests.
 
-## **Note Taking**
+## Note Taking
 
 Note taking is a common disability related accommodation in post-secondary education. It is also a labour and time intensive accommodation that can include learner disclosure, educator involvement to find a note taker, implementation of new technologies, and/or arranging physical services that are not consistently available.
 
@@ -19,7 +19,7 @@ Alternatively, implementing UDL can proactively build note taking support into a
 - Record their lectures and post them to the course site with the transcript
 - Implement crowdsourcing of lecture notes where learners take their notes as they usually would and then upload their personal notes to the course site
 
-## **Additional Time for Quizzes, Tests and/or Exams**
+## Additional Time for Quizzes, Tests and/or Exams
 
 At many post-secondary institutions in Ontario, the most common testing accommodation for learners with disabilities is additional time for quizzes, tests and/or exams. The accommodation is common, but the process for gaining the accommodation can be lengthy and can result in the learner writing in a different space or time than the rest of the class, making it challenging to ask questions of educators and gain prompt responses.
 
@@ -27,7 +27,7 @@ Proactively including additional time for learners to complete quizzes, tests, a
 
 To learn more about this UDL element and how to implement it, please visit Mohawk College’s [Additional Time for Quizzes/Tests/Exams ](https://www.mohawkcollege.ca/centre-for-teaching-learning-innovation/teaching-effectively/universal-design-for-learning#additional-time)webpage.
 
-## **Alternate Formats**
+## Alternate Formats
 
 All learners should be able to access their course content. However, when the accessibility of materials and resources is not already considered, the process for students with disabilities to gain alternate formats can take weeks. During this time, learners can fall behind the class and miss important opportunities to review and study content.
 
@@ -69,6 +69,6 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 UDL on Campus. (2015, Oct 7). UDL at Landmark College \[Video\]. YouTube. https://youtu.be/IMzQR09qXAE

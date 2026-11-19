@@ -20,7 +20,7 @@ Under the Ontario Human Rights Code (OHRC), people are protected from discrimina
 
 [/announcement]
 
-## **Principles of Accommodation Under the Code**
+## Principles of Accommodation Under the Code
 
 Accommodation of students with disabilities is governed by the Charter of Rights and Freedoms, and by provincial human rights statutes, like the Ontario Human Rights Code enacted in 1962. [The Ontario Human Rights Code (OHRC) ↗](http://www.ohrc.on.ca/en/ontario-human-rights-code) makes illegal any actions that discriminate against people based on protected grounds in a protected social area.
 
@@ -28,11 +28,11 @@ As you read through the following list, think about if any of these grounds or s
 
 `[table id=5]`
 
-## **What is an Accommodation?**
+## What is an Accommodation?
 
 Accommodation is one way of preventing and removing barriers that hold back, obstruct, or impede students with disabilities from participating fully in the educational environment in a way that is accessible and appropriate to their own unique circumstances. The principle of accommodation involves three considerations: dignity, individualization, and inclusion (OHRC, n.d.).
 
-## **Defining Appropriate Accommodation**
+## Defining Appropriate Accommodation
 
 There are a wide variety of accommodations provided to students with disabilities at the post-secondary level. These may include:
 
@@ -46,7 +46,7 @@ There are a wide variety of accommodations provided to students with disabilitie
 
 The accommodation process in post-secondary is primarily the responsibility of Student Accessibility Services. It is this office’s responsibility to collect and maintain relevant documentation to support the accommodation request, work with students in developing their accommodation plan, and prepare communication to be shared with instructors.
 
-## **Policy on Accessible Education for Students with Disabilities**
+## Policy on Accessible Education for Students with Disabilities
 
 ![Graphic image of communication icons in a honeycomb structure. Image denotes multiple and interconnected ways to communicate.](https://ecampusontario.pressbooks.pub/app/uploads/sites/6092/2025/04/communication-g76d1c2b8f_1920-1024x632.png)
 
@@ -74,7 +74,7 @@ The duty to accommodate rests on the educational institution as a whole—not ju
 - Clear and reasonable processes and guidelines for seeking accommodation should be in place at all post-secondary institutions, and these should be clearly communicated to all students.
 - The process of accommodation, as well as the outcome, should be respectful of the dignity of the persons affected, and should take into account the importance of integration and full participation. Any planning for accessibility should recognize that persons with disabilities are important stakeholders in the process.
 
-## **Duty to Inquire 8.6.1**
+## Duty to Inquire 8.6.1
 
 In general, the duty to accommodate a disability exists for needs that are known or ought to be known. Education providers are not, as a rule, expected to accommodate disabilities they are unaware of. However, in some circumstances, an instructor may notice a student who has been performing well, suddenly start struggling. Or a student’s conduct in the classroom suddenly changes.
 
@@ -85,7 +85,7 @@ A respectful way to inquire would be:
 
 If the student discloses that they could use support, then the instructor should direct them to the Student Accessibility Services (Offices for Students with Disabilities) which can help students get the support they need and to which they are legally entitled.
 
-## **Confidentiality and Protecting Disability-Related Information**
+## Confidentiality and Protecting Disability-Related Information
 
 Students at the post-secondary level should not be required to reveal their private medical information to, or seek accommodation directly from, their professors, instructors, teaching assistants, administrative staff, etc. as a condition of receiving academic accommodations (OHRC, 2018).
 
@@ -95,7 +95,7 @@ In order to avoid labelling or stereotyping, it is essential confidentiality be 
 
 Accommodation letters or plans provided from the Student Accessibility Services to instructors will not include a diagnosis, but a set of accommodations required to enable the student to have equal opportunity to attain the same level of performance, or to enjoy the same level of benefits and privileges enjoyed by others.
 
-## **Undue Hardship**
+## Undue Hardship
 
 Education providers have a legal duty to accommodate students with disabilities to the point of undue hardship. In many cases, it will not be difficult to accommodate a student’s disability. Accommodation may simply involve making policies, rules, and requirements more flexible. While doing this may involve some administrative inconvenience, inconvenience by itself is not a factor in assessing undue hardship.
 
@@ -120,7 +120,7 @@ The OHRC requires all post-secondary institutions to have a student academic acc
 
 The Commission has taken the position that “academic freedom is unrelated to the duty to accommodate and should not be a defence to accommodating persons with disabilities” (OHRC, 2003, P. 61). The purpose of academic freedom is to protect the special role of institutions of higher education in the free search for truth, and it’s free exposition. As such, it relates mainly to freedom of research and of expression in instruction. It will be rare for a disability-related accommodation to impinge on academic freedom.
 
-## **Academic Integrity**
+## Academic Integrity
 
 Once receiving appropriate accommodation, a student must be able to meet bona fide academic requirements, such as meeting academic standards for admission, demonstrating specific skills, mastering the curriculum, and passing the class, course, or program.
 
@@ -158,7 +158,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
  ---
 
-## **References**
+## References
 
 OHRC. (2013, Mar 14). Working Together: Part 3. Understanding the Duty to Accommodate \[Video\]. YouTube. https://youtu.be/O88pcfAjN20
 

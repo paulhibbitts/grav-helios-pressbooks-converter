@@ -2,7 +2,7 @@
 title: "1.1: Origins of UDL"
 ---
 
-## **Concept of Universal Design**
+## Concept of Universal Design
 
 In the 1980s, architect Ronald Mace introduced the term Universal Design (UD). In its original application, UD refers to “the design of products and environments to be usable by all people, to the greatest extent possible, without the need for adaptation or specialized design” (Connell et al., 1997). For example, consider the barriers presented by entering a building that has steps up to a door with handles. Who would have difficulty accessing such a building?
 
@@ -22,7 +22,7 @@ In the 1980s, architect Ronald Mace introduced the term Universal Design (UD). I
 
 Despite their differences, inclusive instruction is the common goal of all three of these frameworks. The ultimate goal of inclusive instruction is to remove unnecessary barriers and improve access for all learners.
 
-## **Universal Design for Learning**
+## Universal Design for Learning
 
 In the 1900s, David Rose, Anne Meyer, and their colleagues at the Center for Applied Special Technology (CAST) developed the [UDL framework ↗](https://www.cast.org/impact/universal-design-for-learning-udl), which is the only UD framework that is based on research on cognitive neuroscience (Meyer, et al. 2002; Rose, Rouhani, et al., 2013; Rose, 2016). CAST is an organization whose mission is to eliminate barriers to learning and support the development of expert learners while addressing aspects of inclusion, diversity, equity and accessibility.
 
@@ -55,7 +55,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
 ---
 
-## **References**
+## References
 
 chrisinplymouth (Photographer). (2017). Automatic door \[Photograph\]. Flickr. https://flic.kr/p/Xmqa6m. CC BY-NC-SA 2.0.
 

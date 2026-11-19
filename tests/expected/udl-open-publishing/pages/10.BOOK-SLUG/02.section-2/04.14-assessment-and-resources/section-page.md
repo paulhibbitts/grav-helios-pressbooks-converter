@@ -15,7 +15,7 @@ Alternatively, a text-based note-taking space is provided below. **Any notes you
 
 [/exercise]
 
-## **Further Learning**
+## Further Learning
 
 The following are some resources to deepen your learning about UDL and its implementation:
 

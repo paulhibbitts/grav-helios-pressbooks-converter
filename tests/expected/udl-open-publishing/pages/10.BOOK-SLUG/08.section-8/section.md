@@ -37,7 +37,7 @@ Throughout the modules, you will see common terms, abbreviations, and acronyms. 
 
 ---
 
-### **References**
+### References
 
 Antoine, A., Mason, R., Mason, R., Palahicky, S., & Rodriguez de France, C. (2018). Pulling together: A guide for curriculum developers. BCcampus.https://opentextbc.ca/indigenizationcurriculumdevelopers
 
