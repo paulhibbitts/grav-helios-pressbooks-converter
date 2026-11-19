@@ -1,11 +1,6 @@
-# Security headers: tell browsers to be stricter with this site's pages
+# Security headers. The host already sends the usual ones (nosniff, SAMEORIGIN framing, Referrer-Policy, HTTPS only),
+# so only what it doesn't send is added here
 <IfModule mod_headers.c>
-  # don't guess a file's type (a download is never treated as a web page)
-  Header always set X-Content-Type-Options "nosniff"
-  # other sites can't show these pages inside a frame (stops click-tricking)
-  Header always set X-Frame-Options "SAMEORIGIN"
-  # links to other sites send only this site's address, not the full page address
-  Header always set Referrer-Policy "strict-origin-when-cross-origin"
   # these pages never need the camera, microphone or location
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>
