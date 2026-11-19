@@ -37,7 +37,7 @@ Warnings
 Glossary and Captions
 ---------------------
   Glossary: 322 terms, in the Glossary section (section 15), listed in alphabetical order
-  Glossary terms in the text: 327 show their definition when hovered over or tapped
+  Glossary terms in the text: 329 show their definition when hovered over or tapped
   These were linked to a similar Glossary term (such as a plural): check they mean the same:
     - schemas → Schema
     - self-concept → Self concept
@@ -56,7 +56,6 @@ Glossary and Captions
   These terms marked in the book aren't in its Glossary, so they are plain text (add them
   to the Glossary, or wrap them in [term name="Glossary term"]…[/term]):
     - social situation
-    - attitude (2 times)
     - overconfidence bias
     - Message strength
     - Source expertise

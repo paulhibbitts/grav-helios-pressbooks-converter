@@ -562,6 +562,9 @@ class ZipBuilder
     // Returns [entries ([term, definition HTML]), the page's other HTML].
     private function glossaryEntries(string $html): array
     {
+        // a term split into bold pieces that touch, as in <strong>A</strong><strong>ttitude</strong>, is one term
+        $html = preg_replace('#</(strong|b)><\1>#i', '', $html);
+
         $dom = new \DOMDocument();
         libxml_use_internal_errors(true);
         $dom->loadHTML('<html><head><meta charset="UTF-8"></head><body>' . $html . '</body></html>');

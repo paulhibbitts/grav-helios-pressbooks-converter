@@ -9,7 +9,7 @@ title: "4.1 Exploring Attitudes"
 
 [/objectives]
 
- Although we might use the term in a different way in our everyday life (e.g., “Hey, he’s really got an *attitude*!”), social psychologists reserve the term attitude to refer to our *relatively enduring evaluation of something, where the something is called the attitude object*. The attitude object might be a person, a product, or a social group (Albarracín, Johnson, & Zanna, 2005; Wood, 2000). In this section, we will consider the nature and strength of attitudes and the conditions under which attitudes best predict our behaviors.
+ Although we might use the term in a different way in our everyday life (e.g., “Hey, he’s really got an *attitude*!”), social psychologists reserve the term [term]attitude[/term] to refer to our *relatively enduring evaluation of something, where the something is called the attitude object*. The attitude object might be a person, a product, or a social group (Albarracín, Johnson, & Zanna, 2005; Wood, 2000). In this section, we will consider the nature and strength of attitudes and the conditions under which attitudes best predict our behaviors.
 
 ## Attitudes Are Evaluations
 
