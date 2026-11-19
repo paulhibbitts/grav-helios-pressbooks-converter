@@ -496,10 +496,13 @@ class ContentConverter
                 continue;
             }
             $frag = substr($href, 1);
+            $routeFromAddress = $this->routeFromPageAddress($a->getAttribute('data-url'));
             if (strpos($frag, 'return-footnote') === 0) {
                 $a->removeAttribute('href');
             } elseif (isset($this->linkMap[$frag])) {
                 $a->setAttribute('href', $this->linkMap[$frag]);
+            } elseif ($routeFromAddress !== null) {
+                $a->setAttribute('href', $routeFromAddress);
             } else {
                 // Unresolved internal anchor — remove href so it renders as plain text
                 $a->removeAttribute('href');
@@ -507,6 +510,31 @@ class ContentConverter
         }
 
         return $this->bodyHtml($body);
+    }
+
+    // Some books link to an anchor that isn't there ('#chapter-1-9-…' when the chapter's id is
+    // 'chapter-slug-1-9-…'), but the link's data-url still gives the page's address
+    // ('…/chapter/1-9-the-impact-of-covid-19-on-teaching-and-learning/'). The one chapter whose id ends with
+    // that address's last part is the page; null when there's no address, or no single match. An address to a
+    // spot in a page ('…/exploring-attitudes/#id4.2', a figure's description) is left out: going to the top of
+    // the page instead would be no help.
+    private function routeFromPageAddress(string $address): ?string
+    {
+        if ($address === '' || str_contains($address, '#')) {
+            return null;
+        }
+        $path = trim((string)parse_url($address, PHP_URL_PATH), '/');
+        $lastPart = basename($path);
+        if ($lastPart === '' || $lastPart === '.') {
+            return null;
+        }
+        $matches = [];
+        foreach ($this->linkMap as $id => $route) {
+            if ($id === $lastPart || str_ends_with($id, '-' . $lastPart)) {
+                $matches[] = $route;
+            }
+        }
+        return count(array_unique($matches)) === 1 ? $matches[0] : null;
     }
 
     private function fixCallouts(string $html): array
