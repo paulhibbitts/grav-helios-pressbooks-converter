@@ -992,7 +992,7 @@ class ZipBuilder
             'http' => [
                 'method'          => 'GET',
                 // a descriptive name, as many Pressbooks sites refuse the bare "Mozilla/5.0" as a bot
-                'header'          => 'User-Agent: Mozilla/5.0 (compatible; PressbooksConverter/1.0; +https://pressbooks-converter.hibbittsdesign.org/)',
+                'header'          => 'User-Agent: Mozilla/5.0 (compatible; PressbooksConverter/1.0; +https://grav-pressbooks-converter.hibbittsdesign.org/)',
                 'timeout'         => 15,
                 'follow_location' => 1,
                 'max_length'      => $maxLength,
